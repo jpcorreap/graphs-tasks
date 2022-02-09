@@ -7,18 +7,21 @@
 # modo que se pueda transitar de cualquier punto a cualquier punto de la ciudad por dobles vias
 # y que el costo de la conversión sea el mínimo posible.
 
+# Referencia de la solucion: https://www.programiz.com/dsa/kruskal-algorithm
 
-# Referencia: https://www.programiz.com/dsa/kruskal-algorithm
 
-
+# Get set of i
 def find(parent, i):
     if parent[i] == i:
         return i
     return find(parent, parent[i])
 
+
+# Joins two sets
 def union(parent, rank, x, y):
     xroot = find(parent, x)
     yroot = find(parent, y)
+    # According to rank, one root become child of the other root
     if rank[xroot] < rank[yroot]:
         parent[xroot] = yroot
     elif rank[xroot] > rank[yroot]:
@@ -28,6 +31,7 @@ def union(parent, rank, x, y):
         rank[xroot] += 1
 
 
+# Kruskal Algorithm to obtain MST
 def KruskalMST(graph, V):
     # Result array for MST
     result = []
@@ -36,18 +40,22 @@ def KruskalMST(graph, V):
     graph = sorted(graph, key=lambda item: item[2])
     parent = []
     rank = []
+    # Creates a partition for each node
     for node in range(V):
         parent.append(node)
         rank.append(0)
+
+    # It will iterate over all edges
     while e < V - 1:
         u, v, w = graph[i]
         i = i + 1
         x = find(parent, u)
         y = find(parent, v)
+        # It assures this union will not create a cycle
         if x != y:
             e = e + 1
             result.append([u, v, w])
-            union(parent, rank, x, y)
+            union(parent, rank, x, y) # Joins two trees
     minimumCost = 0
     print("Vias a construir:")
     for u, v, weight in result:

@@ -1,3 +1,10 @@
+# 1. La teoría de los seis grados de separación dice que una persona podría conocer a cualquier
+# otra persona del mundo siguiendo una cadena de personas que se conocen entre si de tamaño
+# máximo 6. Suponiendo que si una persona conoce a otra, entonces tienen una relación de
+# amistad en la red social Facebook, diseñar un algoritmo lo más eficiente posible, que reciba la
+# base de datos de relaciones de amistad de esta red social y determine si la teoria de los seis
+# grados de separación se cumple
+
 from collections import deque
 
 def bfs_with_level(graph):

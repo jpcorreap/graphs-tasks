@@ -1,3 +1,6 @@
+# 4. Dada una base de datos con los costos de todos los vuelos del mundo, encontrar la serie de
+# vuelos que con el menor costo posible nos permitan viajar desde Bogotá hacia la ciudad en la
+# que queremos tomar vacaciones.
 
 def minDistance(dist, queue):
     minimum = float("Inf")
@@ -30,7 +33,7 @@ def dijkstra(graph, src, dest):
         # If we process destination node, algorithm is complete.
         if u == dest:
             break
-        # 
+        # Check for each vertex if it is necessary to update the parent and distance arrays
         for i in range(V):
             if graph[u][i] and i in queue:
                 if dist[u] + graph[u][i] < dist[i]:
