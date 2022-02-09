@@ -10,21 +10,28 @@ def minDistance(dist, queue):
 
 
 def dijkstra(graph, src, dest):
-
-    row = len(graph)
-    col = len(graph[0])
-    dist = [float("Inf")] * row
-    parent = [-1] * row
+    V = len(graph)
+    # Keep track distance from source to all other vertex using dist array.
+    dist = [float("Inf")] * V
+    # Keep in track the parent node for the path reconstruction
+    parent = [-1] * V
+    # Mark as 0 the distance from source
     dist[src] = 0
+    # Queue for proccessing all vertex, add all vertex to queue.
     queue = []
-    for i in range(row):
+    for i in range(V):
         queue.append(i)
+    # While there are vertex to proccess
     while queue:
+        # Find minimun distance from proccesed vertex to all other neightbours
         u = minDistance(dist, queue)
+        # Mark as proccesed
         queue.remove(u)
+        # If we process destination node, algorithm is complete.
         if u == dest:
             break
-        for i in range(col):
+        # 
+        for i in range(V):
             if graph[u][i] and i in queue:
                 if dist[u] + graph[u][i] < dist[i]:
                     dist[i] = dist[u] + graph[u][i]
@@ -44,5 +51,9 @@ def printPath(parent, j):
 def printSolution(dist, parent, dest, src):
     ans = ""
     ans += f"Minima distancia entre la ciudad {src} y la ciudad {dest}: {dist[dest]}\n"
-    ans += f"Serie de vuelos: {src}->{printPath(parent, dest)[:-2]}"
-    return ans
+    ans_parent = printPath(parent, dest)[:-2]
+    ans += f"Serie de vuelos: {src}->{ans_parent}"
+    ans_parent = [int(x) for x in ans_parent.split('->')]
+    answer = [src, *ans_parent]
+    print(ans)
+    return answer
