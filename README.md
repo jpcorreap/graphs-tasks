@@ -1,5 +1,3 @@
-#TODO instrucciones:
-
 ## Punto 4: <br />
 ### Test 1: <br />
 Grafo de entrada: <br />
