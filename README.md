@@ -1,6 +1,11 @@
 #TODO instrucciones:
 
+## *Punto 4:* <br />
+### Test 1: <br />
+Grafo de entrada: <br />
+![image](https://user-images.githubusercontent.com/47229643/153116216-cacacfe4-87fe-490d-b285-806f17253803.png) <br />
 
+<br />
 ## *Punto 5:* <br />
 ### Test 1: <br />
 Grafo de entrada: <br />
