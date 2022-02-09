@@ -1,3 +1,10 @@
+## Punto 1: <br />
+### Test 1: <br />
+Grafo de entrada: <br />
+![image](https://user-images.githubusercontent.com/47229643/153119611-6e1c40e4-b4ed-4fe7-950d-9d5cc4b2ba20.png) <br />
+El algoritmo calcula el BFS: <br />
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/47229643/153119495-02207416-b019-44f6-8f89-6d64a116a24b.gif) <br />
+
 ## Punto 4: <br />
 ### Test 1: <br />
 Grafo de entrada: <br />
