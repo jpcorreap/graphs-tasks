@@ -17,8 +17,8 @@ Para ejecutar los tests, abra una línea de comandos en esta carpeta y ejecute: 
 Es importante mencionar que la representación de grafo que usamos para cada punto es distinta:
 
 - **Ejercicio 1:** representación como lista de adyacencias.
-- **Ejercicio 2:** representación como matriz.
-- **Ejercicio 3:** representación como lista de arcos, donde cada elemento de la lista, forma un nodo de inicio, nodo final y costo del arco, i. e. `[u, v, w]`.
+- **Ejercicio 4:** representación como matriz de adyacencias.
+- **Ejercicio 5:** representación como lista de arcos, donde cada elemento de la lista esta compuesto por un nodo de inicio, nodo final y el costo del arco, i. e. `[u, v, w]`.
 
 Adicionalmente, anexamos representaciones gráficas para algunos de los tests implementados, para que le faciliten al evaluador la revisión y validación de los algoritmos: <br />
 <br /><br />
