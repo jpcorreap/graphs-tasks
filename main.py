@@ -13,7 +13,6 @@
 
 from utils import read_files
 
-
 # Edmonds-Karp Algorithm
 # Referencia: https://github.com/anxiaonong/Maxflow-Algorithms/blob/master/Edmonds-Karp%20Algorithm.py
 def max_flow(C, s, t):
