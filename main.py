@@ -11,31 +11,31 @@
 
 Referencia: https://github.com/anxiaonong/Maxflow-Algorithms/blob/master/Edmonds-Karp%20Algorithm.py
 """
+from fileinput import filename
 from os import path
+from os import listdir
+from os.path import isfile, join
+
 """
 DFS that returns true if theres posible a matching between person i and every job other job j.
 """
-
-
 def dfs_mod(i: int, match: list, seen: list, graph: list) -> bool:
     for j in range(len(graph[0])):
         # If person i can do job j and j is not proccesed yet.
         if graph[i][j] and seen[j] == False:
             seen[j] = True  # Mark v as visited
-            # If job v is not done by someone or
-            # previously assigned person for job v (match[v]) has an alternate job available, mark job v to person v.
+            # If job j is not done by someone or
+            # previously assigned person for job j (match[v]) has an alternate job available, mark job j to person v.
             if match[j] == -1 or dfs_mod(match[j], match, seen, graph):
                 match[j] = i
                 return True
     return False
 
-
 """
 Main function that process max flow in maximum matching problem.
+Edmonds-Karp Algorithm
 """
-
-
-def maximum_matching_max_flow(graph: list, file_name: str) -> None:
+def max_flow(graph: list, file_name: str) -> None:
     jobs: int = len(graph[0])
     people: int = len(graph)
     # Array to keep a job done by a person. matching[i] 0<=i<jobs means the person matching[i] is asigned to job i.
@@ -56,14 +56,7 @@ def maximum_matching_max_flow(graph: list, file_name: str) -> None:
 """
     Auxiliary function that creates graph represented in adjacency matrix from input.
 """
-
-
-def create_graph() -> tuple:
-    print("Write the file name to test: (Add extension .txt)")
-    file_name: str = input()
-    while not path.isfile(f"input/{file_name}") and ".txt" in file_name:
-        print("Incorrect file name, try again:")
-        file_name: str = input()
+def create_graph(file_name) -> tuple:
     with open(f"input/{file_name}", "r") as file:
         people, jobs = map(int, file.readline().strip().split())
         graph: list = [[0 for _ in range(jobs)] for __ in range(people)]
@@ -73,6 +66,17 @@ def create_graph() -> tuple:
     return (graph, file_name)
 
 
+
 if __name__ == "__main__":
-    graph, file_name = create_graph()
-    maximum_matching_max_flow(graph, file_name)
+    # Iterates over files located in input file
+    files = [f for f in listdir("input/") if isfile(join("input/", f))]
+
+    for input_file in files:
+        if ".txt" not in input_file:
+            print(f"El archivo {file_name} no tiene una extensión de .txt")
+        else:
+            try:
+                graph, file_name = create_graph(input_file)
+                max_flow(graph, file_name)
+            except:
+                print(f"El archivo {input_file} no respeta el formato solicitado")
