@@ -17,7 +17,7 @@ DFS that returns true if theres posible a matching between person i and every jo
 """
 
 
-def dfs_mod(i, match, seen, graph):
+def dfs_mod(i: int, match: list, seen: list, graph: list) -> bool:
     for j in range(len(graph[0])):
         # If person i can do job j and j is not proccesed yet.
         if graph[i][j] and seen[j] == False:
@@ -51,6 +51,11 @@ def maximum_matching_max_flow(graph: list, file_name: str) -> None:
         if person != -1:
             file.write(f"{person} {job}\n")
     file.close()
+
+
+"""
+    Auxiliary function that creates graph represented in adjacency matrix from input.
+"""
 
 
 def create_graph() -> tuple:
