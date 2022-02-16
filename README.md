@@ -20,3 +20,9 @@ La línea indica que la persona i puede hacer el trabajo j.
   ```
 
  - Dentro de la carpeta output, podrá ver el resultado de la ejecución. Recuerde que cada línea de la respuesta representa que la persona *i*, puede realizar el trabajo *j* maximizando la cantidad de trabajos que se pueden realizar.
+
+Casos de prueba: <br />
+![image](https://user-images.githubusercontent.com/47229643/154191097-3ea1134c-6279-459f-abbd-d2239678e434.png) <br />
+
+Result: <br />
+![image](https://user-images.githubusercontent.com/47229643/154191061-8c64fafa-acd5-4485-8181-2db1e329b495.png) <br />
