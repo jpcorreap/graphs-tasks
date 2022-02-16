@@ -11,8 +11,6 @@
 
 Referencia: https://github.com/anxiaonong/Maxflow-Algorithms/blob/master/Edmonds-Karp%20Algorithm.py
 """
-from fileinput import filename
-from os import path
 from os import listdir
 from os.path import isfile, join
 
@@ -66,11 +64,9 @@ def create_graph(file_name) -> tuple:
     return (graph, file_name)
 
 
-
 if __name__ == "__main__":
     # Iterates over files located in input file
     files = [f for f in listdir("input/") if isfile(join("input/", f))]
-
     for input_file in files:
         if ".txt" not in input_file:
             print(f"El archivo {file_name} no tiene una extensión de .txt")
