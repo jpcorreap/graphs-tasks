@@ -11,10 +11,13 @@
  Entregar un archivo zip que contenga el código fuente de las soluciones a los problemas y un README.txt
  que indique cómo se deben ejecutar los programas implementados.
 """
+
 from decimal import Decimal
+import sys
+import time
 
 
-def gcd(k, totient):
+def _gcd(k, totient):
     while totient != 0:
         c = k % totient
         k = totient
@@ -22,38 +25,43 @@ def gcd(k, totient):
     return k
 
 
-# input variables
-d = 0
-p = int(input("p: "))
-q = int(input("q: "))
-message = int(input("mensaje (numero): "))
-# calculate n
-n = p*q
-# calculate phi(n)
-phi = (p-1)*(q-1)
+if __name__ == "__main__":
+    start = time.time()
+    d = 0
 
-# calcula k
-for k in range(2, phi):
-    if gcd(k, phi) == 1:
-        break
+    # Variables de entrada
+    p = int(sys.argv[1])
+    q = int(sys.argv[2])
+    message = int(sys.argv[3])
 
-# calcula d
-for i in range(1, 10):
-    x = 1 + i*phi
-    if x % k == 0:
-        d = int(x/k)
-        break
-local_cipher = Decimal(0)
-local_cipher = pow(message, k)
-cipher_text = local_cipher % n
+    # Se calculan n y phi(n)
+    n = p*q
+    phi = (p-1)*(q-1)
 
-decrypt_t = Decimal(0)
-decrypt_t = pow(cipher_text, d)
-decrpyted_text = decrypt_t % n
+    # Se calcula k
+    for k in range(2, phi):
+        if _gcd(k, phi) == 1:
+            break
 
-print("n = ", str(n))
-print("k = ", str(k))
-print("phi = ", str(phi))
-print("d = ", str(d))
-print("cipher text = ", str(cipher_text))
-print("decrypted text = ", str(decrpyted_text))
+    # Se calcula d
+    for i in range(1, 10):
+        x = 1 + i*phi
+        if x % k == 0:
+            d = int(x/k)
+            break
+
+    local_cipher = Decimal(0)
+    local_cipher = pow(message, k)
+    cipher_text = local_cipher % n
+
+    decrypt_t = Decimal(0)
+    decrypt_t = pow(cipher_text, d)
+    decrpyted_text = decrypt_t % n
+
+    print("n =", str(n))
+    print("k =", str(k))
+    print("phi =", str(phi))
+    print("d =", str(d))
+    print("cipher text =", str(cipher_text))
+    print("decrypted text =", str(decrpyted_text))
+    print("time = {} ms".format((time.time()-start)*1000))
