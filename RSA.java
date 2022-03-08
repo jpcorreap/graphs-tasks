@@ -13,6 +13,7 @@
  que indique cómo se deben ejecutar los programas implementados.
 */
 import java.math.BigInteger;
+import java.util.Stack;
 
 public class RSA {
     private static int gcd(int k, int totient) {
@@ -26,48 +27,80 @@ public class RSA {
 
     public static void main(String[] args) {
         // Variables de entrada:
-        int p = Integer.parseInt(args[0]);
-        int q = Integer.parseInt(args[1]);
+        int minValue = Integer.parseInt(args[0]);
+        int maxValue = Integer.parseInt(args[1]);
         int message = Integer.parseInt(args[2]);
 
         // Otras variables
+        Stack<Integer> primes = new Stack<Integer>();
         int d = 0;
 
         // Se inicia el contador
         long initialTime = System.currentTimeMillis();
-
+        if (minValue == 1) {
+            primes.push(minValue);
+            minValue += 1;
+            if (maxValue >= 2) {
+                primes.push(minValue);
+                minValue += 1;
+            }
+        }
+        if (minValue == 2) {
+            primes.push(minValue);
+        }
+        if (minValue % 2 == 0)
+            minValue += 1;
+        for (int i = minValue; i < maxValue + 1; i += 2) {
+            int flag = 1;
+            int j = 2;
+            while (j * j <= i) {
+                if (i % j == 0) {
+                    flag = 0;
+                    break;
+                }
+                j += 1;
+            }
+            if (flag == 1)
+                primes.push(i);
+        }
+        int q = primes.pop();
+        int p = primes.pop();
         // Se calculan n y phi(n)
         int n = p * q;
         int phi = (p - 1) * (q - 1);
 
         // Se calcula k
+        int e = 2;
         for (int k = 2; k < phi; k++) {
             if (gcd(k, phi) == 1) {
+                e = k;
                 break;
             }
         }
 
         // Se calcula d
-        for (int i = 2; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             int x = 1 + i * phi;
-            if (x % k == 0) {
-                d = (int) (x / k);
+            if (x % e == 0) {
+                d = (int) (x / e);
                 break;
             }
         }
-
-        BigInteger localCipher = Math.pow(message, k);
-        BigInteger cipherText = localCipher.mod(n);
+        BigInteger localCifrado = new BigInteger(message + "");
+        BigInteger localCipher = localCifrado.pow(e);
+        BigInteger cipherText = localCipher.mod(new BigInteger(n + ""));
 
         BigInteger decryptT = cipherText.pow(d);
-        BigInteger decrpytedText = decryptT.mod(n);
+        BigInteger decrpytedText = decryptT.mod(new BigInteger(n + ""));
 
-        System.out.println("n = " + Integer.toString(n));
-        System.out.println("k = " + Integer.toString(k));
+        System.out.println("p = " + Integer.toString(p));
+        System.out.println("q = " + Integer.toString(q));
+        System.out.println("Cadena Original = " + message);
+        System.out.println(String.format("P(e,n) = P(%d,%d)", e, n));
+        System.out.println(String.format("S(d,n) = S(%d,%d)", d, n));
         System.out.println("phi = " + Integer.toString(phi));
-        System.out.println("d = " + Integer.toString(d));
-        System.out.println("cipher text = " + cipherText);
-        System.out.println("decrypted text = " + decrpytedText);
-        System.out.println("time = " + Double.toString(System.currentTimeMillis() - initialTime) + " ms");
+        System.out.println("Cadena Cifrada = " + cipherText);
+        System.out.println("Cadena Descrifrada  = " + decrpytedText);
+        System.out.println("Tiempo de Ejecucion = " + Double.toString(System.currentTimeMillis() - initialTime) + " ms");
     }
 }
