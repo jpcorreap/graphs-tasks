@@ -13,6 +13,7 @@ Referencia: https://github.com/anxiaonong/Maxflow-Algorithms/blob/master/Edmonds
 """
 from os import listdir
 from os.path import isfile, join
+import sys
 
 """
 DFS that returns true if theres posible a matching between person i and every job other job j.
@@ -33,7 +34,7 @@ def dfs_mod(i: int, match: list, seen: list, graph: list) -> bool:
 Main function that process max flow in maximum matching problem.
 Edmonds-Karp Algorithm
 """
-def max_flow(graph: list, file_name: str) -> None:
+def max_flow(graph: list, file_name: str, output_file: str) -> None:
     jobs: int = len(graph[0])
     people: int = len(graph)
     # Array to keep a job done by a person. matching[i] 0<=i<jobs means the person matching[i] is asigned to job i.
@@ -44,7 +45,7 @@ def max_flow(graph: list, file_name: str) -> None:
         seen = [False for _ in range(jobs)]
         # Find if the person i can get a job with dfs
         dfs_mod(i, matching, seen, graph)
-    file = open(f"output/output_{file_name}", "w")
+    file = open(output_file, "w")
     for job, person in enumerate(matching):
         if person != -1:
             file.write(f"{person} {job}\n")
@@ -54,25 +55,24 @@ def max_flow(graph: list, file_name: str) -> None:
 """
     Auxiliary function that creates graph represented in adjacency matrix from input.
 """
-def create_graph(file_name) -> tuple:
-    with open(f"input/{file_name}", "r") as file:
+def create_graph(file_path) -> tuple:
+    with open(file_path, "r") as file:
         people, jobs = map(int, file.readline().strip().split())
         graph: list = [[0 for _ in range(jobs)] for __ in range(people)]
         for line in file.readlines():
             person, job = map(int, line.strip().split())
             graph[person][job] = 1
-    return (graph, file_name)
+    return (graph, file_path)
 
 
 if __name__ == "__main__":
-    # Iterates over files located in input file
-    files = [f for f in listdir("input/") if isfile(join("input/", f))]
-    for input_file in files:
-        if ".txt" not in input_file:
-            print(f"El archivo {file_name} no tiene una extensión de .txt")
-        else:
-            try:
-                graph, file_name = create_graph(input_file)
-                max_flow(graph, file_name)
-            except:
-                print(f"El archivo {input_file} no respeta el formato solicitado")
+    source_file = sys.argv[1]
+    output_file = sys.argv[2]
+    
+    try:
+        # Primero se crea el grafo
+        graph, file_path = create_graph(source_file)
+        # Luego, se calcula el max_flow con Edmonds Karp
+        max_flow(graph, file_path, output_file)
+    except:
+        print(f"El archivo {source_file} no respeta el formato solicitado")
