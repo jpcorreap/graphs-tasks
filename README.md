@@ -7,7 +7,7 @@
 | Sergio David Sierra Sanmiguel | sd.sierra |
 
 <br />
-Realizamos los puntos 1, 4 y 5. Están separados en archivos .py con los respectivos nombres.
+Los ejercicios están separados en archivos .py con los respectivos nombres.
 
 Para probar cada uno de los puntos, se adicionaron tres archivos test.py.
 
