@@ -14,46 +14,56 @@ que indique cómo se deben ejecutar los programas implementados.
 """
 
 # Python3 program for Shannon Fano Algorithm
- 
- 
+
+from re import A
+import sys
 # declare structure node
-class  node :
+
+
+class node:
     def __init__(self) -> None:
         # for storing symbol
-        self.sym=''
+        self.sym = ''
         # for storing probability or frequency
-        self.pro=0.0
-        self.arr=[0]*20
-        self.top=0
-p=[node() for _ in range(20)]
- 
+        self.pro = 0.0
+        self.arr = [0]*20
+        self.top = 0
+
+
+p = [node() for _ in range(20)]
+
 # function to find shannon code
+
+
 def shannon(l, h, p):
-    pack1 = 0; pack2 = 0; diff1 = 0; diff2 = 0
-    if ((l + 1) == h or l == h or l > h) :
+    pack1 = 0
+    pack2 = 0
+    diff1 = 0
+    diff2 = 0
+    if ((l + 1) == h or l == h or l > h):
         if (l == h or l > h):
             return
-        p[h].top+=1
+        p[h].top += 1
         p[h].arr[(p[h].top)] = 0
-        p[l].top+=1
+        p[l].top += 1
         p[l].arr[(p[l].top)] = 1
-         
+
         return
-     
-    else :
-        for i in range(l,h):
+
+    else:
+        for i in range(l, h):
             pack1 = pack1 + p[i].pro
         pack2 = pack2 + p[h].pro
         diff1 = pack1 - pack2
         if (diff1 < 0):
             diff1 = diff1 * -1
         j = 2
-        while (j != h - l + 1) :
+        while (j != h - l + 1):
             k = h - j
             pack1 = pack2 = 0
             for i in range(l, k+1):
                 pack1 = pack1 + p[i].pro
-            for i in range(h,k,-1):
+            for i in range(h, k, -1):
                 pack2 = pack2 + p[i].pro
             diff2 = pack1 - pack2
             if (diff2 < 0):
@@ -61,64 +71,64 @@ def shannon(l, h, p):
             if (diff2 >= diff1):
                 break
             diff1 = diff2
-            j+=1
-         
-        k+=1
-        for i in range(l,k+1):
-            p[i].top+=1
+            j += 1
+
+        k += 1
+        for i in range(l, k+1):
+            p[i].top += 1
             p[i].arr[(p[i].top)] = 1
-             
-        for i in range(k + 1,h+1):
-            p[i].top+=1
+
+        for i in range(k + 1, h+1):
+            p[i].top += 1
             p[i].arr[(p[i].top)] = 0
-             
- 
+
         # Invoke shannon function
         shannon(l, k, p)
         shannon(k + 1, h, p)
-     
- 
- 
+
+
 # Function to sort the symbols
 # based on their probability or frequency
 def sortByProbability(n, p):
-    temp=node()
-    for j in range(1,n) :
-        for i in range(n - 1) :
-            if ((p[i].pro) > (p[i + 1].pro)) :
+    temp = node()
+    for j in range(1, n):
+        for i in range(n - 1):
+            if ((p[i].pro) > (p[i + 1].pro)):
                 temp.pro = p[i].pro
                 temp.sym = p[i].sym
- 
+
                 p[i].pro = p[i + 1].pro
                 p[i].sym = p[i + 1].sym
- 
+
                 p[i + 1].pro = temp.pro
                 p[i + 1].sym = temp.sym
-             
-         
-     
- 
- 
+
+
 # function to display shannon codes
 def display(n, p):
-    print("\n\n\n\tSymbol\tProbability\tCode",end='')
-    for i in range(n - 1,-1,-1):
-        print("\n\t", p[i].sym, "\t\t", p[i].pro,"\t",end='')
+    print("\n\n\n\tSymbol\tProbability\tCode", end='')
+    for i in range(n - 1, -1, -1):
+        print("\n\t", p[i].sym, "\t\t", p[i].pro, "\t", end='')
         for j in range(p[i].top+1):
-            print(p[i].arr[j],end='')
-     
- 
- 
+            print(p[i].arr[j], end='')
+
+
 # Driver code
 if __name__ == '__main__':
     total = 0
- 
+
     # String inicial
-    test_str = input("Input string: ")
+    archivo_entrada, archivo_salida = sys.argv[1], sys.argv[2]
+
+    test_str = ""
+    with open(archivo_entrada, 'r') as archivo:
+        lines = archivo.readlines()
+        for line in lines:
+            test_str += line
 
     # Estructura de diccionario donde se cuentan las apariciones de cada caracter
     all_freq = {}
-  
+
     for i in test_str:
         if i in all_freq:
             all_freq[i] += 1
@@ -128,42 +138,38 @@ if __name__ == '__main__':
     for key in all_freq:
         all_freq[key] = all_freq[key] / len(test_str)
 
-  
-    # printing result 
-    print ("Frequency of all characters in the string :\n "
-                                        +  str(all_freq))
-    
+    salida = "Frequency of all characters in the string :\n " + str(all_freq)
+
     # Input number of symbols
     n = len(all_freq)
-    i=0
+    i = 0
     x = []
     # Input symbols
     for key in all_freq:
         ch = key
         x.append(all_freq[ch])
- 
+
         # Insert the symbol to node
         p[i].sym += ch
-     
- 
+
     # Input probability of symbols
     i = 0
     for key in all_freq:
-        print("\nEnter probability of", key, ": ",end="")
-        print(x[i])
- 
+        salida += "\nEnter probability of" +str(key)
+        salida += str(x[i])
+
         # Insert the value to node
         p[i].pro = x[i]
-        i+=1
-    
+        i += 1
+
     # Sorting the symbols based on frequency
     sortByProbability(n, p)
- 
+
     for i in range(n):
         p[i].top = -1
- 
+
     # Find the shannon code
     shannon(0, n - 1, p)
- 
+
     # Display the codes
     display(n, p)
