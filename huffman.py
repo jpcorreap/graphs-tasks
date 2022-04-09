@@ -156,4 +156,4 @@ if __name__ == '__main__':
         file.write("\n")
         file.write("\nEntropia en el peor caso: " + str(entropia))
         file.write("\nNumero de bits esperados: ")
-        file.write(("\nNumero de bits necesarios: ")
+        file.write("\nNumero de bits necesarios: ")
