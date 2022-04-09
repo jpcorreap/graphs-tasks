@@ -139,7 +139,7 @@ if __name__ == '__main__':
     codes, frequencies = buildHuffmanTree(test_str)
 
     for letter in frequencies:
-        percentage = frequencies[letter]/input_len*100
+        percentage = frequencies[letter]/input_len
         frequencies[letter] = percentage
     
     entropia = math.log2(len(codes.keys()))
