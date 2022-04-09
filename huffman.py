@@ -146,7 +146,7 @@ if __name__ == '__main__':
 
     # Writes in output file
     with open(output_file, "w") as file:
-        file.write(f"Respuesta al archivo '{input_file}':")
+        file.write(f"Respuesta al archivo '{input_file}' aplicando el algoritmo de Huffman")
         file.write("\n")
         file.write("\nCodificacion: " + encoded_string)
         file.write("\n")

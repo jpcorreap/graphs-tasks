@@ -147,7 +147,7 @@ if __name__ == '__main__':
     answer = shannon(0, n - 1, p)
 
     # Display the codes
-
+    codes = {}
     salida = []
     letter = p[n-1].sym
     letter = letter[::-1]
@@ -159,7 +159,9 @@ if __name__ == '__main__':
         code = ""
         for j in range(p[i].top+1):
             code += str(p[i].arr[j])
-        
+
+        codes[letter[i]] = code
+
         temp.append(code)
         salida.append(temp)
     entr = 0
@@ -170,12 +172,17 @@ if __name__ == '__main__':
 
     entropia = math.log2(len(all_freq.keys()))
 
+    # print the encoded string
+    codificacion = ""
+    print(codes)
+    for c in test_str:
+        codificacion += codes.get(c)
+
     # Writes in output file
     with open(archivo_salida, "w") as file:
-        file.write(f"Respuesta al archivo '{archivo_entrada}':")
+        file.write(f"Respuesta al archivo '{archivo_entrada}' aplicando el algoritmo de Shannon-Fano")
         file.write("\n")
-        if answer:
-            file.write("\nCodificacion: " + answer)
+        file.write("\nCodificacion: " + codificacion)
         file.write("\n")
         file.write("\n{:<8} {:<25} {:<10}".format('Simbolo','Probabilidad','Codigo'))
         for line in salida:
