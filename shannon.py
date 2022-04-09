@@ -1,16 +1,12 @@
 """
-Implementar en grupos de 3 personas programas que resuelvan cada uno de los siguientes problemas:
+Dado un texto, calcular codigos de Shannon-Fano que permitan comprimir el texto dado.
 
-Dado un texto, calcular códigos de Shannon-Fano que permitan comprimir el texto dado.
-Dado un texto, calcular códigos de Huffman que permitan comprimir el texto dado. 
-Para los dos programas, se debe informar además de la codificación, el número de bits esperado, la
+Se debe informar además de la codificacion, el número de bits esperado, la
 entropía en el peor de los casos y el número total de bits que se necesitarían para guardar el texto dado.
 
-Todos los programas realizados deben poder funcionar a partir de un archivo dado por el usuario. 
-Los programas no pueden hacer ninguna suposición acerca del sistema operativo o del sistema de archivos del usuario. 
-El archivo de entrada debe ser un archivo de texto que en una o más lineas contenga el mensaje a comprimir.
-Entregar un archivo zip que contenga el código fuente de las soluciones a los problemas y un README.txt
-que indique cómo se deben ejecutar los programas implementados.
+El programa debe poder funcionar a partir de un archivo dado por el usuario. 
+El programa no puede hacer ninguna suposicion acerca del sistema operativo o del sistema de archivos del usuario. 
+El archivo de entrada debe ser un archivo de texto que en una o mas lineas contenga el mensaje a comprimir.
 """
 import sys
 import math
@@ -152,19 +148,32 @@ if __name__ == '__main__':
 
     # Display the codes
 
-    salida = "\nSimbolo\t\tProbabilidad\t\tCodigo"
+    salida = []
     letter = p[n-1].sym
     letter = letter[::-1]
     for i in range(n - 1, -1, -1):
-
-        temp = f"\n{letter[i]}\t\t{p[i].pro}\t"
+        temp = []
+        temp.append(letter[i])
+        temp.append(p[i].pro)
         for j in range(p[i].top+1):
-            temp += str(p[i].arr[j])
-        salida += temp
-    print(salida)
+            temp.append(str(p[i].arr[j]))
+        salida.append(temp)
     entr = 0
+
+    entropia_shannon = 0
     for key in all_freq:
-        entropia += (all_freq[key]*math.log2((1/all_freq[key])))
-    print("Entropia : "+ "{}".format(entropia))
+        entropia_shannon += (all_freq[key]*math.log2((1/all_freq[key])))
+
+    entropia = math.log2(len(all_freq.keys()))
+
+    # Writes in output file
     with open(archivo_salida, "w") as file:
-        file.write(salida)
+        file.write(f"Respuesta al archivo '{archivo_entrada}':")
+        file.write("\n")
+        file.write("\n{:<8} {:<25} {:<10}".format('Simbolo','Probabilidad','Codigo'))
+        for line in salida:
+            file.write("\n{:<8} {:<25} {:<10}".format(line[0], line[1], line[2]))
+        file.write("\n")
+        file.write("\nEntropia de Shannon: " + str(entropia_shannon))
+        file.write("\n")
+        file.write("\nEntropia en el peor caso: " + str(entropia))
