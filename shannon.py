@@ -13,7 +13,7 @@ Entregar un archivo zip que contenga el código fuente de las soluciones a los p
 que indique cómo se deben ejecutar los programas implementados.
 """
 import sys
-
+import math
 
 class node:
     def __init__(self) -> None:
@@ -162,5 +162,9 @@ if __name__ == '__main__':
             temp += str(p[i].arr[j])
         salida += temp
     print(salida)
+    entr = 0
+    for key in all_freq:
+        entropia += (all_freq[key]*math.log2((1/all_freq[key])))
+    print("Entropia : "+ "{}".format(entropia))
     with open(archivo_salida, "w") as file:
         file.write(salida)
