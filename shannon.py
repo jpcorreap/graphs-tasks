@@ -189,5 +189,6 @@ if __name__ == '__main__':
             file.write("\n{:<8} {:<25} {:<10}".format(line[0], line[1], line[2]))
         file.write("\n")
         file.write("\nEntropia de Shannon: " + str(entropia_shannon))
-        file.write("\n")
         file.write("\nEntropia en el peor caso: " + str(entropia))
+        file.write("\nNumero de bits esperados: " + str(entropia_shannon*len(test_str)))
+        file.write(("\nNumero de bits necesarios: " + str(len(codificacion))))
