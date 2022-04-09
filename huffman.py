@@ -138,9 +138,13 @@ if __name__ == '__main__':
 
     codes, frequencies, encoded_string = buildHuffmanTree(test_str)
 
+    min_percentage = 1
+
     for letter in frequencies:
         percentage = frequencies[letter]/input_len
         frequencies[letter] = percentage
+        if percentage < min_percentage:
+            min_percentage = percentage
     
     entropia = math.log2(len(codes.keys()))
 
@@ -155,5 +159,5 @@ if __name__ == '__main__':
             file.write("\n{:<8} {:<20} {:<10}".format(letter, frequencies[letter], codes[letter]))
         file.write("\n")
         file.write("\nEntropia en el peor caso: " + str(entropia))
-        file.write("\nNumero de bits esperados: ")
-        file.write("\nNumero de bits necesarios: ")
+        file.write("\nNumero de bits esperados: " + str(math.log2(min_percentage) * -1))
+        file.write("\nNumero de bits necesarios: " + len(encoded_string))
