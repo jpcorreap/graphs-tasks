@@ -10,6 +10,7 @@ El archivo de entrada debe ser un archivo de texto que en una o mas lineas conte
 """
 import heapq
 from heapq import heappop, heappush
+import math
 import sys
 
 # Referencia:
@@ -118,9 +119,32 @@ def buildHuffmanTree(text):
         index = -1
         while index < len(s) - 1:
             index = decode(root, index, s)
+    
+    return huffmanCode
 
 
 # Huffman coding algorithm implementation in Python
 if __name__ == '__main__':
-    text = sys.argv[1]
-    buildHuffmanTree(text)
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+
+    test_str = ""
+    with open(input_file, 'r') as archivo:
+        lines = archivo.readlines()
+        for line in lines:
+            test_str += line
+
+    codes = buildHuffmanTree(test_str)
+
+    entropia = math.log2(len(codes.keys()))
+
+    # Writes in output file
+    with open(output_file, "w") as file:
+        file.write(f"Respuesta al archivo '{input_file}':")
+        file.write("\n")
+        file.write("\n{:<8} {:<10}".format('Simbolo', 'Codigo'))
+        file.write("\n")
+        for letter in codes:
+            file.write("\n{:<8} {:<10}".format(letter, codes[letter]))
+        file.write("\n")
+        file.write("\nEntropia en el peor caso: " + str(entropia))
