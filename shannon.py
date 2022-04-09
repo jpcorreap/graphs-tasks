@@ -155,8 +155,12 @@ if __name__ == '__main__':
         temp = []
         temp.append(letter[i])
         temp.append(p[i].pro)
+
+        code = ""
         for j in range(p[i].top+1):
-            temp.append(str(p[i].arr[j]))
+            code += str(p[i].arr[j])
+        
+        temp.append(code)
         salida.append(temp)
     entr = 0
 
