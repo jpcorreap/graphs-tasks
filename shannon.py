@@ -1,16 +1,12 @@
 """
-Implementar en grupos de 3 personas programas que resuelvan cada uno de los siguientes problemas:
+Dado un texto, calcular codigos de Shannon-Fano que permitan comprimir el texto dado.
 
-Dado un texto, calcular códigos de Shannon-Fano que permitan comprimir el texto dado.
-Dado un texto, calcular códigos de Huffman que permitan comprimir el texto dado. 
-Para los dos programas, se debe informar además de la codificación, el número de bits esperado, la
+Se debe informar además de la codificacion, el número de bits esperado, la
 entropía en el peor de los casos y el número total de bits que se necesitarían para guardar el texto dado.
 
-Todos los programas realizados deben poder funcionar a partir de un archivo dado por el usuario. 
-Los programas no pueden hacer ninguna suposición acerca del sistema operativo o del sistema de archivos del usuario. 
-El archivo de entrada debe ser un archivo de texto que en una o más lineas contenga el mensaje a comprimir.
-Entregar un archivo zip que contenga el código fuente de las soluciones a los problemas y un README.txt
-que indique cómo se deben ejecutar los programas implementados.
+El programa debe poder funcionar a partir de un archivo dado por el usuario. 
+El programa no puede hacer ninguna suposicion acerca del sistema operativo o del sistema de archivos del usuario. 
+El archivo de entrada debe ser un archivo de texto que en una o mas lineas contenga el mensaje a comprimir.
 """
 import sys
 

@@ -1,7 +1,16 @@
+"""
+Dado un texto, calcular codigos de Huffman que permitan comprimir el texto dado.
+
+Se debe informar además de la codificacion, el número de bits esperado, la
+entropía en el peor de los casos y el número total de bits que se necesitarían para guardar el texto dado.
+
+El programa debe poder funcionar a partir de un archivo dado por el usuario. 
+El programa no puede hacer ninguna suposicion acerca del sistema operativo o del sistema de archivos del usuario. 
+El archivo de entrada debe ser un archivo de texto que en una o mas lineas contenga el mensaje a comprimir.
+"""
 import heapq
 from heapq import heappop, heappush
 import sys
-
 
 # Referencia:
 # https://www.techiedelight.com/huffman-coding/
