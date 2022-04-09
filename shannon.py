@@ -144,7 +144,7 @@ if __name__ == '__main__':
         p[i].top = -1
 
     # Find the shannon code
-    shannon(0, n - 1, p)
+    answer = shannon(0, n - 1, p)
 
     # Display the codes
 
@@ -173,6 +173,9 @@ if __name__ == '__main__':
     # Writes in output file
     with open(archivo_salida, "w") as file:
         file.write(f"Respuesta al archivo '{archivo_entrada}':")
+        file.write("\n")
+        if answer:
+            file.write("\nCodificacion: " + answer)
         file.write("\n")
         file.write("\n{:<8} {:<25} {:<10}".format('Simbolo','Probabilidad','Codigo'))
         for line in salida:
