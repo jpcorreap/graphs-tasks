@@ -120,7 +120,7 @@ def buildHuffmanTree(text):
         while index < len(s) - 1:
             index = decode(root, index, s)
     
-    return huffmanCode
+    return huffmanCode, freq
 
 
 # Huffman coding algorithm implementation in Python
@@ -134,17 +134,25 @@ if __name__ == '__main__':
         for line in lines:
             test_str += line
 
-    codes = buildHuffmanTree(test_str)
+    input_len = len(test_str)
 
+    codes, frequencies = buildHuffmanTree(test_str)
+
+    for letter in frequencies:
+        percentage = frequencies[letter]/input_len*100
+        frequencies[letter] = percentage
+    
     entropia = math.log2(len(codes.keys()))
+
+    print()
 
     # Writes in output file
     with open(output_file, "w") as file:
         file.write(f"Respuesta al archivo '{input_file}':")
         file.write("\n")
-        file.write("\n{:<8} {:<10}".format('Simbolo', 'Codigo'))
+        file.write("\n{:<8} {:<20} {:<10}".format('Simbolo', 'Probabilidad', 'Codigo'))
         file.write("\n")
         for letter in codes:
-            file.write("\n{:<8} {:<10}".format(letter, codes[letter]))
+            file.write("\n{:<8} {:<20} {:<10}".format(letter, frequencies[letter], codes[letter]))
         file.write("\n")
         file.write("\nEntropia en el peor caso: " + str(entropia))
