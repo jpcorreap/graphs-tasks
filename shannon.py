@@ -148,19 +148,32 @@ if __name__ == '__main__':
 
     # Display the codes
 
-    salida = "\nSimbolo\t\tProbabilidad\t\tCodigo"
+    salida = []
     letter = p[n-1].sym
     letter = letter[::-1]
     for i in range(n - 1, -1, -1):
-
-        temp = f"\n{letter[i]}\t\t{p[i].pro}\t"
+        temp = []
+        temp.append(letter[i])
+        temp.append(p[i].pro)
         for j in range(p[i].top+1):
-            temp += str(p[i].arr[j])
-        salida += temp
-    print(salida)
+            temp.append(str(p[i].arr[j]))
+        salida.append(temp)
     entr = 0
+
+    entropia_shannon = 0
     for key in all_freq:
-        entropia += (all_freq[key]*math.log2((1/all_freq[key])))
-    print("Entropia : "+ "{}".format(entropia))
+        entropia_shannon += (all_freq[key]*math.log2((1/all_freq[key])))
+
+    entropia = math.log2(len(all_freq.keys()))
+
+    # Writes in output file
     with open(archivo_salida, "w") as file:
-        file.write(salida)
+        file.write(f"Respuesta al archivo '{archivo_entrada}':")
+        file.write("\n")
+        file.write("\n{:<8} {:<25} {:<10}".format('Simbolo','Probabilidad','Codigo'))
+        for line in salida:
+            file.write("\n{:<8} {:<25} {:<10}".format(line[0], line[1], line[2]))
+        file.write("\n")
+        file.write("\nEntropia de Shannon: " + str(entropia_shannon))
+        file.write("\n")
+        file.write("\nEntropia en el peor caso: " + str(entropia))
