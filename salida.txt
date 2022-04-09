@@ -19,7 +19,6 @@ m        0.037037037037037035      11110
 i        0.037037037037037035      11111     
 
 Entropia de Shannon: 3.602316558505553
-
 Entropia en el peor caso: 3.807354922057604
 Numero de bits esperados: 97.26254707964993
 Numero de bits necesarios: 100

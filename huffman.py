@@ -155,4 +155,5 @@ if __name__ == '__main__':
             file.write("\n{:<8} {:<20} {:<10}".format(letter, frequencies[letter], codes[letter]))
         file.write("\n")
         file.write("\nEntropia en el peor caso: " + str(entropia))
-        file.write("\n")
+        file.write("\nNumero de bits esperados: ")
+        file.write(("\nNumero de bits necesarios: ")
