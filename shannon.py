@@ -12,12 +12,7 @@ El archivo de entrada debe ser un archivo de texto que en una o más lineas cont
 Entregar un archivo zip que contenga el código fuente de las soluciones a los problemas y un README.txt
 que indique cómo se deben ejecutar los programas implementados.
 """
-
-# Python3 program for Shannon Fano Algorithm
-
-from re import A
 import sys
-# declare structure node
 
 
 class node:
@@ -104,20 +99,9 @@ def sortByProbability(n, p):
                 p[i + 1].sym = temp.sym
 
 
-# function to display shannon codes
-def display(n, p):
-    print("\n\n\n\tSymbol\tProbability\tCode", end='')
-    for i in range(n - 1, -1, -1):
-        print("\n\t", p[i].sym, "\t\t", p[i].pro, "\t", end='')
-        for j in range(p[i].top+1):
-            print(p[i].arr[j], end='')
-
-
-# Driver code
 if __name__ == '__main__':
     total = 0
 
-    # String inicial
     archivo_entrada, archivo_salida = sys.argv[1], sys.argv[2]
 
     test_str = ""
@@ -138,8 +122,6 @@ if __name__ == '__main__':
     for key in all_freq:
         all_freq[key] = all_freq[key] / len(test_str)
 
-    salida = "Frequency of all characters in the string :\n " + str(all_freq)
-
     # Input number of symbols
     n = len(all_freq)
     i = 0
@@ -155,9 +137,6 @@ if __name__ == '__main__':
     # Input probability of symbols
     i = 0
     for key in all_freq:
-        salida += "\nEnter probability of" +str(key)
-        salida += str(x[i])
-
         # Insert the value to node
         p[i].pro = x[i]
         i += 1
@@ -172,4 +151,16 @@ if __name__ == '__main__':
     shannon(0, n - 1, p)
 
     # Display the codes
-    display(n, p)
+
+    salida = "\nSimbolo\t\tProbabilidad\t\tCodigo"
+    letter = p[n-1].sym
+    letter = letter[::-1]
+    for i in range(n - 1, -1, -1):
+
+        temp = f"\n{letter[i]}\t\t{p[i].pro}\t"
+        for j in range(p[i].top+1):
+            temp += str(p[i].arr[j])
+        salida += temp
+    print(salida)
+    with open(archivo_salida, "w") as file:
+        file.write(salida)
