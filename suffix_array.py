@@ -12,6 +12,9 @@ def obtener_cadena_de_consulta(cadena_original: str, arreglo_de_sufijos: list):
 
 
 if __name__ == "__main__":
-    CADENA_ORIGINAL = "algoritmos"
-    suffix_array = get_integer_suffix_array(CADENA_ORIGINAL)
-    obtener_cadena_de_consulta(CADENA_ORIGINAL, suffix_array)
+    CADENA_ORIGINAL = "esta es una cadena de algoritmos"
+
+    parsed_string = CADENA_ORIGINAL.replace(" ", "")
+    suffix_array = get_integer_suffix_array(parsed_string)
+    obtener_cadena_de_consulta(parsed_string, suffix_array)
+    
