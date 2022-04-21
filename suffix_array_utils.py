@@ -32,7 +32,7 @@ def _get_suffix_array(string: str) -> list:
     return array
 
 
-def get_integer_suffix_array(string: str):
+def get_sorted_suffix_array(string: str):
     suffix_array = _get_suffix_array(string)
 
     # Orders by suffix
@@ -44,7 +44,21 @@ def get_integer_suffix_array(string: str):
     return sorted_suffix_array
 
 
-test = get_integer_suffix_array("algoritmos")
 
-for line in test:
+def get_integer_suffix_array(string: str):
+    sortered_suffix = get_sorted_suffix_array(string)
+    integer_array = []
+
+    for suffix in sortered_suffix:
+        integer_array.append(suffix.get("index"))
+
+    return integer_array
+
+
+suffix_int_array = get_integer_suffix_array("algoritmos") 
+complete_suffix_array = get_sorted_suffix_array("algoritmos") 
+
+print(suffix_int_array)
+
+for line in complete_suffix_array:
     print(line)
