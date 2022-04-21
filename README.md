@@ -1,4 +1,4 @@
-# Graph Tasks<br />
+# Tarea 6<br />
 
 | Integrante | Login |
 | ------ | ------ |
@@ -6,49 +6,28 @@
 | Juan Pablo Sarmiento Sanabria | jp.sarmientos |
 | Sergio David Sierra Sanmiguel | sd.sierra |
 
-<br />
-Realizamos los puntos 1, 4 y 5. Están separados en archivos .py con los respectivos nombres.
+Implementar en los grupos de trabajo un programa que implemente un arreglo de sufijos para resolver el siguiente problema:
 
-Para probar cada uno de los puntos, se adicionaron tres archivos test.py.
+Entradas:
 
-Para ejecutar los tests, abra una línea de comandos en esta carpeta y ejecute: <br />
-`python tests_exercise_<No. de ejercicio>.py`
+un archivo con un texto que puede estar en varias lineas
+un archivo con cadenas a consultar (una cadena por linea).
+Salida: Para cada cadena de consulta, el programa debe imprimir una linea con la consulta y, separadas por tabulador, las posiciones en el texto en las que aparece la cadena de consulta. La salida se puede imprimir en salida estandar o en un archivo cuyo nombre debe ser dado por el usuario.
 
-Es importante mencionar que la representación de grafo que usamos para cada punto es distinta:
+El programa no pueden hacer ninguna suposición acerca del sistema operativo o del sistema de archivos del usuario.
 
-- **Ejercicio 1:** representación como lista de adyacencias.
-- **Ejercicio 4:** representación como matriz de adyacencias.
-- **Ejercicio 5:** representación como lista de arcos, donde cada elemento de la lista esta compuesto por un nodo de inicio, nodo final y el costo del arco, i. e. `[u, v, w]`.
+Pasos para solucionar el problema:
 
-Adicionalmente, anexamos representaciones gráficas para algunos de los tests implementados, para que le faciliten al evaluador la revisión y validación de los algoritmos: <br />
-<br /><br />
-## **Punto 1:** <br />
-### Test 3: <br />
-Grafo de entrada: <br />
-![image](https://user-images.githubusercontent.com/47229643/153119611-6e1c40e4-b4ed-4fe7-950d-9d5cc4b2ba20.png) <br />
-El algoritmo calcula el BFS: <br />
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/47229643/153119495-02207416-b019-44f6-8f89-6d64a116a24b.gif) <br />
-*Arreglo final de separación entre el nodo de inicio y los demás vértices:* [0, 2, 1, 1, 2, 3, 3, 4, 3, 2]
-<br />
-<br />
-## **Punto 4:** <br />
-### Test 1: <br />
-Grafo de entrada: <br />
-![image](https://user-images.githubusercontent.com/47229643/153116681-0348b3f6-49af-4fb7-a1b6-2a82605edc31.png) <br />
+1. Construir un arreglo de sufijos
+1.1 Leer el texto
+1.2 Construir una lista de cadenas con todos los sufijos del texto original
+1.3 Ordenar la lista
+1.4 Escribir una función que retorne un arreglo de enteros con las posiciones de inicio de los diferentes sufijos.
 
-Dijkstra entre 8 y 4: <br />
-![image](https://user-images.githubusercontent.com/47229643/153116880-918651b7-dc52-4393-b2ea-393ec0b29b15.png)
-<br /><br />
-## **Punto 5:** <br />
-### Test 1: <br />
-Grafo de entrada: <br />
-![image](https://user-images.githubusercontent.com/47229643/153114757-a6b2ccc9-5099-432d-ad7a-b33c53c045c2.png)
+2. Desarrollar una función que reciba la cadena original, el arreglo de sufijos, y una cadena de consulta y calcule las posiciones en las que se encuentra la cadena de consulta. Implementar búsqueda binaria.
 
-El algoritmo hallará el MST: <br />
-![image](https://user-images.githubusercontent.com/47229643/153114943-1f423c38-f780-4d39-9cff-555994886cb3.png)
+3. El problema principal de esta implementación es que generar la lista de cadenas con todos los sufijos del texto es muy ineficiente en espacio. Modificar la construcción del arreglo de sufijos para generar el arreglo ordenado de posiciones sin tener que calcular explicitamente los sufijos.
 
-Y el inverso de este MST será la respuesta al algoritmo: <br />
-![image](https://user-images.githubusercontent.com/47229643/153115517-9c5bf16e-0d50-4816-a797-163b397c538a.png)
+Realizar pruebas del archivo con textos de cien mil, un millon y diez millones de caracteres y con mil, diez mil, cien mil y un millon de consultas. Calcular una tabla con los tiempos de ejecución de todos los experimentos.
 
-
-
+Entregar un archivo zip con el código fuente del programa, un README que explique la forma en que se debe usar y un archivo de excel con los resultados de los experimentos.
