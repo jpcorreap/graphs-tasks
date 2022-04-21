@@ -53,9 +53,9 @@ def get_integer_suffix_array(string: str):
 
     print("Arreglo de sufijos (solo indices):")
     print(integer_array)
-    print("-"*50)
+    print("="*100)
     print("Arreglo de sufijos completo:")
     for line in sortered_suffix:
         print(line)
 
-    return integer_array
+    return integer_array, sortered_suffix
