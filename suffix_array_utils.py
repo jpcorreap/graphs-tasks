@@ -44,7 +44,6 @@ def get_sorted_suffix_array(string: str):
     return sorted_suffix_array
 
 
-
 def get_integer_suffix_array(string: str):
     sortered_suffix = get_sorted_suffix_array(string)
     integer_array = []
@@ -52,13 +51,11 @@ def get_integer_suffix_array(string: str):
     for suffix in sortered_suffix:
         integer_array.append(suffix.get("index"))
 
+    print("Arreglo de sufijos (solo indices):")
+    print(integer_array)
+    print("-"*50)
+    print("Arreglo de sufijos completo:")
+    for line in sortered_suffix:
+        print(line)
+
     return integer_array
-
-
-suffix_int_array = get_integer_suffix_array("algoritmos") 
-complete_suffix_array = get_sorted_suffix_array("algoritmos") 
-
-print(suffix_int_array)
-
-for line in complete_suffix_array:
-    print(line)
