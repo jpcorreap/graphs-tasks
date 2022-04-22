@@ -1,22 +1,22 @@
 import sys
 from suffix_array_indexer import get_integer_suffix_array, get_integer_suffix_array_without_strings
 
-"""
-    2. Desarrollar una función que reciba la cadena original, el arreglo de sufijos,
-    y una cadena de consulta y calcule las posiciones en las que se encuentra la cadena
-    de consulta. Implementar búsqueda binaria.
-"""
 
-
-def obtener_posiciones_cadena_de_consulta(arreglo_de_enteros: list, cadena_original: str, cadena_consulta: str):
+def obtener_posiciones_cadena_de_consulta(cadena_original: str, arreglo_de_sufijos: list, cadena_consulta: str):
+    """
+        2. Desarrollar una funcion que reciba la cadena original, el arreglo de sufijos,
+        y una cadena de consulta y calcule las posiciones en las que se encuentra la cadena
+        de consulta. Implementar busqueda binaria.
+    """
     low = 0
-    high = len(arreglo_de_enteros)-1
+    high = len(arreglo_de_sufijos)-1
     mid = (high+low)//2
     answers = []
 
     while(high >= low):
+        print(cadena_original[mid:])
         if (cadena_original[mid:]).startswith(cadena_consulta):
-            answers.append(arreglo_de_enteros[mid])
+            answers.append(arreglo_de_sufijos[mid])
             break
         elif cadena_original[mid:] < cadena_consulta:
             low = mid+1
@@ -59,14 +59,12 @@ if __name__ == "__main__":
 
     # Escenario 1:
     suffix_array_escenario_1 = get_integer_suffix_array(cadena_original)
+    respuesta_escenario_1 = obtener_posiciones_cadena_de_consulta(cadena_original, suffix_array_escenario_1, "esta")
 
     # Escenario 2:
     suffix_array_escenario_2 = get_integer_suffix_array_without_strings(cadena_original)
+    respuesta_escenario_2 = obtener_posiciones_cadena_de_consulta(cadena_original, suffix_array_escenario_2, "esta")
 
-    # Se elige arbitrariamente uno de los resultados de los dos escenarios para calcular la respuesta
-    # Esto se hace porque se parte del hecho que suffix_array_escenario_1 y suffix_array_escenario_2
-    # representan exactamente el mismo arreglo de sufijos, solo cambia la forma en como se obtiene
-    respuesta_escenario_1 = obtener_posiciones_cadena_de_consulta(suffix_array_escenario_1, cadena_original, "cadena_consulta")
 
 
     # Writes in output file

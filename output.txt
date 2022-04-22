@@ -38,12 +38,12 @@ En este escenario se calculan explicitamente los sufijos str.
 		6        unacadenadealgoritmos    
 
 	Respuesta al escenario:
-	[]
+	[8]
 
 	Estadisticas del escenario:
 	  Longitud de caracteres de entrada: 27
 	  Cantidad de cadenas de consulta: 3
-	  Cantidad de respuestas: 0
+	  Cantidad de respuestas: 1
 	  Espacio ocupado en el escenario: 5
 	  Tiempo que se tardo: 10
 
