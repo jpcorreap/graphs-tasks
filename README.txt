@@ -1,6 +1,5 @@
-Tarea 6 - Arreglo de sufijos
+Tarea 6 - Arreglo de sufijos.
 Programa que implementa un arreglo de sufijos.
-
 
 ----------------------------------------------
                    Equipo #4
@@ -21,6 +20,12 @@ Por favor recuerde que para el correcto funcionamiento del programa, debe especi
     - Archivo 1: un archivo con un texto que puede estar en varias líneas.
     - Archivo 2: un archivo con cadenas a consultar (una cadena por línea).
 
-Ejecute:
-python suffix_array.py <archivo1.txt> <archivo2.txt> <archivoSalida.txt>
+Nota: nuestro programa no hace validaciones de espacios o caracteres especiales,
+de ser posible, absténgase de usarlos. Usarlos no garantiza un resultado óptimo del algoritmo.
 
+Una vez validado que cumple lo anterior, ejecute:
+  python suffix_array.py <archivo1.txt> <archivo2.txt> <archivoSalida.txt>
+
+Posteriormente, encontrará en <archivoSalida.txt> los resultados del algoritmo para dos escenarios:
+    - Primer escenario: calculando explícitamente los sufijos.
+    - Segundo escenario: calculando únicamente el arreglo ordenado de posiciones.

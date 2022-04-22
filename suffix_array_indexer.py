@@ -6,6 +6,8 @@
     1.2 Construir una lista de cadenas con todos los sufijos del texto original
     1.3 Ordenar la lista
     1.4 Obtener un arreglo de enteros con las posiciones de inicio de los diferentes sufijos
+    3.  Modificar la construcción del arreglo de sufijos para generar el arreglo ordenado de
+        posiciones sin tener que calcular explicitamente los sufijos.
 """
 
 
@@ -19,7 +21,7 @@ def _get_suffix_array(string: str) -> list:
         -----------
             string : str
                 cadena original
-        
+
         Returns:
         -----------
             array : list
@@ -48,7 +50,7 @@ def get_sorted_suffix_array(string: str) -> list:
         -----------
             string : str
                 cadena original
-        
+
         Returns:
         -----------
             array : list
@@ -67,7 +69,7 @@ def get_sorted_suffix_array(string: str) -> list:
     return sorted_suffix_array
 
 
-def get_integer_suffix_array(string: str):
+def get_integer_suffix_array(string: str) -> list:
     """
         1.4 Construye una lista de indices de sufijos con todos los sufijos del texto original,
         esta es una lista de indices ordenados por el sufijo que representan
@@ -76,7 +78,7 @@ def get_integer_suffix_array(string: str):
         -----------
             string : str
                 cadena original
-        
+
         Returns:
         -----------
             array : list
@@ -90,11 +92,40 @@ def get_integer_suffix_array(string: str):
     for suffix in sortered_suffix:
         integer_array.append(suffix.get("index"))
 
-    print("Arreglo de sufijos (solo indices):")
     print(integer_array)
-    print("="*100)
-    print("Arreglo de sufijos completo:")
-    for line in sortered_suffix:
-        print(line)
-
     return integer_array, sortered_suffix
+
+
+def get_integer_suffix_array_without_strings(string: str) -> list:
+    """
+        3. Construye una lista de indices de sufijos con todos los sufijos del texto original,
+        retorna exactamente lo mismo que get_sorted_suffix_array pero con la excepcion de que
+        en esta funcion no se declaran explicitamente los sufijos, sino que solo se opera con
+        enteros que representan los indices de donde empiezan los sufijos
+
+        Parameters:
+        -----------
+            string : str
+                cadena original
+
+        Returns:
+        -----------
+            array : list
+                arreglo de enteros con las posiciones de inicio de los diferentes sufijos.
+                Adicionalmente, se garantiza que esta lista esta ordenada alfabeticamente con
+                base en el sufijo que representan
+    """
+    # Calcular todos los sufijos se reduce a tener todos los posibles indices
+    integer_array = [x for x in range(len(string))]
+
+    for i in integer_array:
+        print(i, string[i:])
+    
+    sorted_integer_array = sorted(
+        integer_array,
+        key=lambda i: string[i:]
+    )
+
+    return sorted_integer_array
+
+get_integer_suffix_array_without_strings("esta es una cadena de algoritmos")
