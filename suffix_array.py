@@ -34,6 +34,10 @@ if __name__ == "__main__":
     archivo_entrada_2 = sys.argv[2]
     # Ruta al archivo de salida, donde se escribiran los resultados
     archivo_salida = sys.argv[3]
+    # Bool para saber si imprimir o no las tablas con los sufijos
+    omitir_sufijos=False
+    if len(sys.argv) > 4:
+        omitir_sufijos = sys.argv[4] == "--omitirEscrituraSufijos"
 
     # El archivo de entrada 1 expresado en un str largo sin saltos de linea
     cadena_original = ""
@@ -55,11 +59,9 @@ if __name__ == "__main__":
 
     # Escenario 1:
     suffix_array_escenario_1 = get_integer_suffix_array(cadena_original)
-    print("Escenario 1", suffix_array_escenario_1)
 
     # Escenario 2:
     suffix_array_escenario_2 = get_integer_suffix_array_without_strings(cadena_original)
-    print("Escenario 2", suffix_array_escenario_2)
 
     # Se elige arbitrariamente uno de los resultados de los dos escenarios para calcular la respuesta
     # Esto se hace porque se parte del hecho que suffix_array_escenario_1 y suffix_array_escenario_2
@@ -73,12 +75,14 @@ if __name__ == "__main__":
         file.write("\n\n")
 
         # Imprime para el escenario 1
-        file.write("\nEscenario 1:\n")
+        file.write("\nEscenario 1:")
+        file.write("\nEn este escenario se calculan explicitamente los sufijos str.\n")
         file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_1))
-        file.write("\n\n\tRepresentacion del arreglo de sufijos:")
-        file.write("\n\t\t{:<8} {:<25}".format('Indice','Sufijo'))
-        for index_1 in suffix_array_escenario_1:
-            file.write("\n\t\t{:<8} {:<25}".format(index_1, cadena_original[index_1:]))
+        if not omitir_sufijos:
+            file.write("\n\n\tRepresentacion del arreglo de sufijos:")
+            file.write("\n\t\t{:<8} {:<25}".format('Indice','Sufijo'))
+            for index_1 in suffix_array_escenario_1:
+                file.write("\n\t\t{:<8} {:<25}".format(index_1, cadena_original[index_1:]))
         file.write("\n\n\tRespuesta al escenario:")
         file.write("\n\t" + str(respuesta_escenario_1))
         file.write("\n\n\tEstadisticas del escenario:")
@@ -90,4 +94,5 @@ if __name__ == "__main__":
 
         file.write("\n\n")
 
+    print("Resultado persistido en", archivo_salida)
 

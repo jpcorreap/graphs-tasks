@@ -26,6 +26,10 @@ de ser posible, absténgase de usarlos. Usarlos no garantiza un resultado óptim
 Una vez validado que cumple lo anterior, ejecute:
   python suffix_array.py <archivo1.txt> <archivo2.txt> <archivoSalida.txt>
 
+Adicionalmente, hay una opcion para evitar que el archivoSalida imprima absolutamente todos los
+sufijos encontrados. Este parámetro adicional es --omitirEscrituraSufijos. Un ejemplo de cómo usarlo sería:
+  python suffix_array.py <archivo1.txt> <archivo2.txt> <archivoSalida.txt> --omitirEscrituraSufijos
+
 Posteriormente, encontrará en <archivoSalida.txt> los resultados del algoritmo para dos escenarios:
     - Primer escenario: calculando explícitamente los sufijos.
     - Segundo escenario: calculando únicamente el arreglo ordenado de posiciones.
