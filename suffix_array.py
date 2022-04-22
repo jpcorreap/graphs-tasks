@@ -1,4 +1,5 @@
 import sys
+import time
 from suffix_array_indexer import get_integer_suffix_array, get_integer_suffix_array_without_strings
 
 
@@ -16,7 +17,7 @@ def obtener_posiciones_cadena_de_consulta(cadena_original: str, arreglo_de_sufij
         mid = left + (right - left) // 2
         if (cadena_original[mid:]).startswith(cadena_consulta):
             answers.append(mid)
-            break
+            right = mid - 1
         elif cadena_original[mid:] < cadena_consulta:
             left = mid + 1
         else:
@@ -56,6 +57,7 @@ if __name__ == "__main__":
             cadenas_consulta.append(line.replace(" ", "").replace("\n", ""))
 
     # Escenario 1:
+    start_time_1 = time.time()
     suffix_array_escenario_1 = get_integer_suffix_array(cadena_original)
     respuestas_escenario_1 = []
     for cadena_consulta in cadenas_consulta:
@@ -68,8 +70,10 @@ if __name__ == "__main__":
             "cadena_consulta": cadena_consulta,
             "respuesta": posiciones
         })
+    end_time_1 = time.time()
 
     # Escenario 2:
+    start_time_2 = time.time()
     suffix_array_escenario_2 = get_integer_suffix_array(cadena_original)
     respuestas_escenario_2 = []
     for cadena_consulta in cadenas_consulta:
@@ -82,6 +86,7 @@ if __name__ == "__main__":
             "cadena_consulta": cadena_consulta,
             "respuesta": posiciones
         })
+    end_time_2 = time.time()
 
     # Writes in output file
     with open(archivo_salida, "w") as file:
@@ -104,16 +109,14 @@ if __name__ == "__main__":
         file.write("\nEn este escenario se calculan explicitamente los sufijos str.\n")
         file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
         file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
-        file.write("\n\t  Espacio ocupado por el escenario: " + str(5))
-        file.write("\n\t  Tiempo que se tardo: " + str(10))
+        file.write("\n\t  Tiempo que se tardo: %s segundos" % (end_time_1 - start_time_1))
         file.write("\n")
         
         file.write("\n\n\tEstadisticas del escenario 2:")
         file.write("\nEn este escenario se omite el calculo explicito de los sufijos str.\n")
         file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
         file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
-        file.write("\n\t  Espacio ocupado por el escenario: " + str(5))
-        file.write("\n\t  Tiempo que se tardo: " + str(10))
+        file.write("\n\t  Tiempo que se tardo: %s segundos" % (end_time_2 - start_time_2))
         file.write("\n")
 
 

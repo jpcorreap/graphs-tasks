@@ -43,8 +43,7 @@ En este escenario se calculan explicitamente los sufijos str.
 
 	  Longitud de caracteres de entrada: 27
 	  Cantidad de cadenas de consulta: 2
-	  Espacio ocupado por el escenario: 5
-	  Tiempo que se tardo: 10
+	  Tiempo que se tardo: 0.0 segundos
 
 
 	Estadisticas del escenario 2:
@@ -52,5 +51,4 @@ En este escenario se omite el calculo explicito de los sufijos str.
 
 	  Longitud de caracteres de entrada: 27
 	  Cantidad de cadenas de consulta: 2
-	  Espacio ocupado por el escenario: 5
-	  Tiempo que se tardo: 10
+	  Tiempo que se tardo: 0.0 segundos
