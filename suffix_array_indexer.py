@@ -92,7 +92,6 @@ def get_integer_suffix_array(string: str) -> list:
     for suffix in sortered_suffix:
         integer_array.append(suffix.get("index"))
 
-    print(integer_array)
     return integer_array, sortered_suffix
 
 
@@ -117,9 +116,6 @@ def get_integer_suffix_array_without_strings(string: str) -> list:
     """
     # Calcular todos los sufijos se reduce a tener todos los posibles indices
     integer_array = [x for x in range(len(string))]
-
-    for i in integer_array:
-        print(i, string[i:])
     
     sorted_integer_array = sorted(
         integer_array,
