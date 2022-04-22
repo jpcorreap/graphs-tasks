@@ -92,7 +92,7 @@ def get_integer_suffix_array(string: str) -> list:
     for suffix in sortered_suffix:
         integer_array.append(suffix.get("index"))
 
-    return integer_array, sortered_suffix
+    return integer_array
 
 
 def get_integer_suffix_array_without_strings(string: str) -> list:

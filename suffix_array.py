@@ -8,17 +8,17 @@ from suffix_array_indexer import get_integer_suffix_array, get_integer_suffix_ar
 """
 
 
-def obtener_posiciones_cadena_de_consulta(arreglo_de_enteros: list, arreglo_de_sufijos: list, cadena_consulta: str):
+def obtener_posiciones_cadena_de_consulta(arreglo_de_enteros: list, cadena_original: str, cadena_consulta: str):
     low = 0
     high = len(arreglo_de_enteros)-1
     mid = (high+low)//2
     answers = []
 
     while(high >= low):
-        if arreglo_de_sufijos[mid].get("suffix").startswith(cadena_consulta):
+        if (cadena_original[mid:]).startswith(cadena_consulta):
             answers.append(arreglo_de_enteros[mid])
             break
-        elif arreglo_de_sufijos[mid].get("suffix") < cadena_consulta:
+        elif cadena_original[mid:] < cadena_consulta:
             low = mid+1
         else:
             high = mid-1
@@ -54,7 +54,7 @@ if __name__ == "__main__":
             cadenas_consulta.append(line.replace(" ", "").replace("\n", ""))
 
     # Escenario 1:
-    suffix_array_escenario_1, sortered_suffix = get_integer_suffix_array(cadena_original)
+    suffix_array_escenario_1 = get_integer_suffix_array(cadena_original)
     print("Escenario 1", suffix_array_escenario_1)
 
     # Escenario 2:
@@ -64,39 +64,30 @@ if __name__ == "__main__":
     # Se elige arbitrariamente uno de los resultados de los dos escenarios para calcular la respuesta
     # Esto se hace porque se parte del hecho que suffix_array_escenario_1 y suffix_array_escenario_2
     # representan exactamente el mismo arreglo de sufijos, solo cambia la forma en como se obtiene
-    answers = obtener_posiciones_cadena_de_consulta(suffix_array_escenario_1, sortered_suffix, cadena_original)
+    respuesta_escenario_1 = obtener_posiciones_cadena_de_consulta(suffix_array_escenario_1, cadena_original, "cadena_consulta")
 
 
     # Writes in output file
     with open(archivo_salida, "w") as file:
         file.write(f"Respuesta al archivo '{archivo_entrada_1}' con los sufijos de '{archivo_entrada_2}':")
-        file.write("\n---------------------------------------------------------------------------------------\n")
+        file.write("\n\n")
 
+        # Imprime para el escenario 1
         file.write("\nEscenario 1:\n")
         file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_1))
-        file.write("\n")
-        file.write("\n\t{:<8} {:<25}".format('Indice','Sufijo'))
-        for line in sortered_suffix:
-            file.write("\n\t{:<8} {:<25}".format(line.get("index"), line.get("suffix")))
-        file.write("\n")
-        file.write("\n\tEstadisticas del Escenario 1:")
+        file.write("\n\n\tRepresentacion del arreglo de sufijos:")
+        file.write("\n\t\t{:<8} {:<25}".format('Indice','Sufijo'))
+        for index_1 in suffix_array_escenario_1:
+            file.write("\n\t\t{:<8} {:<25}".format(index_1, cadena_original[index_1:]))
+        file.write("\n\n\tRespuesta al escenario:")
+        file.write("\n\t" + str(respuesta_escenario_1))
+        file.write("\n\n\tEstadisticas del escenario:")
         file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
         file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
-        file.write("\n\t  Espacio ocupado en este escenario: " + str(5))
-        file.write("\n\t  Tiempo que se tardo este escenario: " + str(10))
+        file.write("\n\t  Cantidad de respuestas: " + str(len(respuesta_escenario_1)))
+        file.write("\n\t  Espacio ocupado en el escenario: " + str(5))
+        file.write("\n\t  Tiempo que se tardo: " + str(10))
 
         file.write("\n\n")
 
-        file.write("\nEscenario 2:\n")
-        file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_2))
-        file.write("\n")
-        file.write("\n\t{:<8} {:<25}".format('Indice','Sufijo'))
-        for index in suffix_array_escenario_2:
-            file.write("\n\t{:<8} {:<25}".format(index, cadena_original[index:]))
-        file.write("\n")
-        file.write("\n\tEstadisticas del Escenario 2:")
-        file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
-        file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
-        file.write("\n\t  Espacio ocupado en este escenario: " + str(5))
-        file.write("\n\t  Tiempo que se tardo este escenario: " + str(10))
 
