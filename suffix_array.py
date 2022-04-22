@@ -73,16 +73,30 @@ if __name__ == "__main__":
         file.write("\n---------------------------------------------------------------------------------------\n")
 
         file.write("\nEscenario 1:\n")
-        file.write("\Arreglo de sufijos: " + str(suffix_array_escenario_1))
+        file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_1))
         file.write("\n")
-        file.write("\n{:<8} {:<25}".format('Indice','Sufijo'))
+        file.write("\n\t{:<8} {:<25}".format('Indice','Sufijo'))
         for line in sortered_suffix:
-            file.write("\n{:<8} {:<25}".format(line.get("index"), line.get("suffix")))
+            file.write("\n\t{:<8} {:<25}".format(line.get("index"), line.get("suffix")))
         file.write("\n")
-        file.write("\nEstadisticas del Escenario 1: \n")
-        file.write("\Espacio ocupado: " + str(5))
-        file.write("\Tiempo que se tardo: " + str(10))
+        file.write("\n\tEstadisticas del Escenario 1:")
+        file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
+        file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
+        file.write("\n\t  Espacio ocupado en este escenario: " + str(5))
+        file.write("\n\t  Tiempo que se tardo este escenario: " + str(10))
 
-        print(cadenas_consulta)
+        file.write("\n\n")
 
+        file.write("\nEscenario 2:\n")
+        file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_2))
+        file.write("\n")
+        file.write("\n\t{:<8} {:<25}".format('Indice','Sufijo'))
+        for index in suffix_array_escenario_2:
+            file.write("\n\t{:<8} {:<25}".format(index, cadena_original[index:]))
+        file.write("\n")
+        file.write("\n\tEstadisticas del Escenario 2:")
+        file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
+        file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
+        file.write("\n\t  Espacio ocupado en este escenario: " + str(5))
+        file.write("\n\t  Tiempo que se tardo este escenario: " + str(10))
 
