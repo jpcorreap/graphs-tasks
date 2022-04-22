@@ -1,4 +1,4 @@
-from suffix_array_utils import get_integer_suffix_array
+from suffix_array_indexer import get_integer_suffix_array
 
 """
     2. Desarrollar una función que reciba la cadena original, el arreglo de sufijos,
