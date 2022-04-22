@@ -8,21 +8,19 @@ def obtener_posiciones_cadena_de_consulta(cadena_original: str, arreglo_de_sufij
         y una cadena de consulta y calcule las posiciones en las que se encuentra la cadena
         de consulta. Implementar busqueda binaria.
     """
-    low = 0
-    high = len(arreglo_de_sufijos)-1
-    mid = (high+low)//2
+    left = 0
+    right = len(arreglo_de_sufijos) - 1
     answers = []
 
-    while(high >= low):
-        # print(cadena_original[mid:])
+    while left <= right:
+        mid = left + (right - left) // 2
         if (cadena_original[mid:]).startswith(cadena_consulta):
-            answers.append(arreglo_de_sufijos[mid])
+            answers.append(mid)
             break
         elif cadena_original[mid:] < cadena_consulta:
-            low = mid+1
+            left = mid + 1
         else:
-            high = mid-1
-        mid = (high+low)//2
+            right = mid - 1
 
     return answers
 
@@ -91,8 +89,7 @@ if __name__ == "__main__":
         file.write("\n\n")
 
         # Imprime para el escenario 1
-        file.write("\nEscenario 1:")
-        file.write("\nEn este escenario se calculan explicitamente los sufijos str.\n")
+        file.write("Respuesta:")
         file.write("\n\tArreglo de sufijos:\n\t" + str(suffix_array_escenario_1))
         if not omitir_sufijos:
             file.write("\n\n\tRepresentacion del arreglo de sufijos:")
@@ -102,13 +99,23 @@ if __name__ == "__main__":
         file.write("\n\n\tRespuestas:")
         for respuesta in respuestas_escenario_1:
             file.write("\n\t\t'{}': {}".format(respuesta.get("cadena_consulta"), str(respuesta.get("respuesta"))))
-        file.write("\n\n\tEstadisticas del escenario:")
+        
+        file.write("\n\n\tEstadisticas del escenario 1:")
+        file.write("\nEn este escenario se calculan explicitamente los sufijos str.\n")
         file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
         file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
         file.write("\n\t  Espacio ocupado por el escenario: " + str(5))
         file.write("\n\t  Tiempo que se tardo: " + str(10))
+        file.write("\n")
+        
+        file.write("\n\n\tEstadisticas del escenario 2:")
+        file.write("\nEn este escenario se omite el calculo explicito de los sufijos str.\n")
+        file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
+        file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
+        file.write("\n\t  Espacio ocupado por el escenario: " + str(5))
+        file.write("\n\t  Tiempo que se tardo: " + str(10))
+        file.write("\n")
 
-        file.write("\n\n")
 
     print("Resultado persistido en", archivo_salida)
 

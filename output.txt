@@ -1,9 +1,6 @@
 Respuesta al archivo 'input_1.txt' con los sufijos de 'input_2.txt':
 
-
-Escenario 1:
-En este escenario se calculan explicitamente los sufijos str.
-
+Respuesta:
 	Arreglo de sufijos:
 	[8, 14, 10, 3, 17, 9, 15, 11, 16, 12, 0, 4, 19, 22, 18, 24, 7, 13, 20, 25, 21, 26, 1, 5, 2, 23, 6]
 
@@ -38,13 +35,22 @@ En este escenario se calculan explicitamente los sufijos str.
 		6        unacadenadealgoritmos    
 
 	Respuestas:
-		'es': [8]
-		'una': []
-		'algo': []
+		'nadealgor': [13]
+		'os': []
 
-	Estadisticas del escenario:
+	Estadisticas del escenario 1:
+En este escenario se calculan explicitamente los sufijos str.
+
 	  Longitud de caracteres de entrada: 27
-	  Cantidad de cadenas de consulta: 3
+	  Cantidad de cadenas de consulta: 2
 	  Espacio ocupado por el escenario: 5
 	  Tiempo que se tardo: 10
 
+
+	Estadisticas del escenario 2:
+En este escenario se omite el calculo explicito de los sufijos str.
+
+	  Longitud de caracteres de entrada: 27
+	  Cantidad de cadenas de consulta: 2
+	  Espacio ocupado por el escenario: 5
+	  Tiempo que se tardo: 10
