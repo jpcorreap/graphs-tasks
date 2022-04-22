@@ -14,7 +14,7 @@ def obtener_posiciones_cadena_de_consulta(cadena_original: str, arreglo_de_sufij
     answers = []
 
     while(high >= low):
-        print(cadena_original[mid:])
+        # print(cadena_original[mid:])
         if (cadena_original[mid:]).startswith(cadena_consulta):
             answers.append(arreglo_de_sufijos[mid])
             break
@@ -59,13 +59,31 @@ if __name__ == "__main__":
 
     # Escenario 1:
     suffix_array_escenario_1 = get_integer_suffix_array(cadena_original)
-    respuesta_escenario_1 = obtener_posiciones_cadena_de_consulta(cadena_original, suffix_array_escenario_1, "esta")
+    respuestas_escenario_1 = []
+    for cadena_consulta in cadenas_consulta:
+        posiciones = obtener_posiciones_cadena_de_consulta(
+            cadena_original,
+            suffix_array_escenario_1,
+            cadena_consulta
+        )
+        respuestas_escenario_1.append({
+            "cadena_consulta": cadena_consulta,
+            "respuesta": posiciones
+        })
 
     # Escenario 2:
-    suffix_array_escenario_2 = get_integer_suffix_array_without_strings(cadena_original)
-    respuesta_escenario_2 = obtener_posiciones_cadena_de_consulta(cadena_original, suffix_array_escenario_2, "esta")
-
-
+    suffix_array_escenario_2 = get_integer_suffix_array(cadena_original)
+    respuestas_escenario_2 = []
+    for cadena_consulta in cadenas_consulta:
+        posiciones = obtener_posiciones_cadena_de_consulta(
+            cadena_original,
+            suffix_array_escenario_2,
+            cadena_consulta
+        )
+        respuestas_escenario_2.append({
+            "cadena_consulta": cadena_consulta,
+            "respuesta": posiciones
+        })
 
     # Writes in output file
     with open(archivo_salida, "w") as file:
@@ -81,13 +99,13 @@ if __name__ == "__main__":
             file.write("\n\t\t{:<8} {:<25}".format('Indice','Sufijo'))
             for index_1 in suffix_array_escenario_1:
                 file.write("\n\t\t{:<8} {:<25}".format(index_1, cadena_original[index_1:]))
-        file.write("\n\n\tRespuesta al escenario:")
-        file.write("\n\t" + str(respuesta_escenario_1))
+        file.write("\n\n\tRespuestas:")
+        for respuesta in respuestas_escenario_1:
+            file.write("\n\t\t'{}': {}".format(respuesta.get("cadena_consulta"), str(respuesta.get("respuesta"))))
         file.write("\n\n\tEstadisticas del escenario:")
         file.write("\n\t  Longitud de caracteres de entrada: " + str(len(cadena_original)))
         file.write("\n\t  Cantidad de cadenas de consulta: " + str(len(cadenas_consulta)))
-        file.write("\n\t  Cantidad de respuestas: " + str(len(respuesta_escenario_1)))
-        file.write("\n\t  Espacio ocupado en el escenario: " + str(5))
+        file.write("\n\t  Espacio ocupado por el escenario: " + str(5))
         file.write("\n\t  Tiempo que se tardo: " + str(10))
 
         file.write("\n\n")
