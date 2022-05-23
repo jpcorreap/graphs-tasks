@@ -1,3 +1,12 @@
+graph = {
+    0: [3, 4],
+    1: [2, 5],
+    2: [1, 3],
+    3: [0, 2, 4, 5],
+    4: [0, 3, 5],
+    5: [1, 3, 4]
+}
+
 # Elimina todos los ejes de un vertice dado
 def remove_all_edges(graph, vertex):
     new_graph = graph.copy()
@@ -5,8 +14,9 @@ def remove_all_edges(graph, vertex):
     for u in graph.keys():
         if u != vertex:
             new_list = new_graph[u]
-            new_list.remove(vertex)
-            new_graph[u] = new_list
+            if vertex in new_list:
+                new_list.remove(vertex)
+                new_graph[u] = new_list
     return new_graph
 
 
@@ -23,3 +33,6 @@ def remove_edge(graph, first_vertex, second_vertex):
     new_graph[second_vertex] = new_second_list
 
     return new_graph
+
+
+print(remove_all_edges(graph, 1))
