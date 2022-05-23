@@ -1,3 +1,26 @@
+
+# Lee el archivo de la ruta especificada en el parametro
+# y retorna un grafo que lo representa
+def read_graph(path):
+    graph = {}
+    file = open(path, "r")
+    lines = file.readlines()
+    
+    for line in lines:
+        parsed = line.replace("\n", "").split("\t")
+        u = int(parsed[0])
+        v = int(parsed[1])
+
+        u_links = graph.get(u, set())
+        u_links.add(v)
+        graph[u] = u_links
+
+        v_links = graph.get(v, set())
+        v_links.add(u)
+        graph[v] = v_links
+    
+    return graph
+
 # Elimina todos los ejes de un vertice dado
 def remove_all_edges(graph, vertex):
     new_graph = graph.copy()

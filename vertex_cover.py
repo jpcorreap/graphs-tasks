@@ -1,6 +1,7 @@
 
 import sys
 import time
+from graph_utils import read_graph
 from vertex_cover_1 import vertex_cover_aa1
 from vertex_cover_4 import vertex_cover_aa4
 
@@ -11,17 +12,6 @@ ALGORITMOS = [
     vertex_cover_aa1,
     vertex_cover_aa4
 ]
-
-
-def _read_graph(ruta):
-    return {
-        0: [3, 4],
-        1: [2, 5],
-        2: [1, 3],
-        3: [0, 2, 4, 5],
-        4: [0, 3, 5],
-        5: [1, 3, 4]
-    }
 
 
 if __name__ == "__main__":
@@ -41,7 +31,7 @@ if __name__ == "__main__":
 
     respuesta = []
 
-    graph = _read_graph(input_file_path)
+    graph = read_graph(input_file_path)
 
     tiempo_inicio = time.time()
     respuesta = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
