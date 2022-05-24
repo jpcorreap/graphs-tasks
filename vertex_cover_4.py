@@ -23,13 +23,9 @@ def _get_random_edge(graph: dict) -> tuple:
     random_destiny_vertex = None
     all_processed = set(graph.keys())
     while not found and len(all_processed) > 0:
-        if len(graph.keys()) > 0:
-            random_origin_vertex = sample(all_processed, 1)[0]
-            all_processed.remove(random_origin_vertex)
-            if len(graph[random_origin_vertex]) > 0:
-                random_destiny_vertex = sample(
-                    graph[random_origin_vertex], 1)[0]
-                found = True
-        else:
-            found = False
+        random_origin_vertex = sample(all_processed, 1)[0]
+        all_processed.remove(random_origin_vertex)
+        if len(graph[random_origin_vertex]) > 0:
+            random_destiny_vertex = sample(graph[random_origin_vertex], 1)[0]
+            found = True
     return found, random_origin_vertex, random_destiny_vertex
