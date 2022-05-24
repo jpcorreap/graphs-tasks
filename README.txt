@@ -31,7 +31,6 @@ tiempo que tomó al algoritmo hayar esa solución.
 ----------------
 El archivo de entrada debe contar con los ejes del grafo de esta forma:
 - La primera línea debe ser un único número indicando la cantidad de vértices que
-  posee el grafo a representar. Esto se requiere principalmente para conocer la longitud
-  de las listas, pues puede ser que hayan vértices que no estén conectados con otros.
+  posee el grafo a representar.
 - Después, cada línea del archivo debe contener una pareja de números que representan
   los dos vértices conectados, separados por un tab.
