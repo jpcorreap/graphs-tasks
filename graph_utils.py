@@ -29,7 +29,8 @@ def remove_all_edges(graph, vertex):
 
     for u in graph.keys():
         if u != vertex:
-            new_graph[u].remove(vertex)
+            if u in new_graph:
+                new_graph[u].discard(vertex)
                 
     return new_graph
 
