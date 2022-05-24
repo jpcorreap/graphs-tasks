@@ -39,7 +39,7 @@ def _get_arbitrary_edge(graph):
     return False
 
 
-def vertex_cover_aa1(original_graph):
+def vertex_cover_1(original_graph):
     """
         Escoger arbitrariamente un eje, incluir los dos vertices
         conectados, descartar todos los demas ejes conectados por

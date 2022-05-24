@@ -1,8 +1,35 @@
-from graph_utils import remove_all_edges
 from random import choice, sample
 
 
-def vertex_cover_ra4(graph: dict) -> tuple:
+# Elimina todos los ejes de un vertice dado
+def remove_all_edges(graph, vertex):
+    new_graph = graph.copy()
+    new_graph[vertex] = set()
+
+    for u in graph.keys():
+        if u != vertex:
+            if u in new_graph:
+                new_graph[u].discard(vertex)
+                
+    return new_graph
+
+
+# Elimina un unico eje
+def remove_edge(graph, first_vertex, second_vertex):
+    new_graph = graph.copy()
+
+    new_first_list = new_graph[first_vertex]
+    new_first_list.remove(second_vertex)
+    new_graph[first_vertex] = new_first_list
+
+    new_second_list = new_graph[second_vertex]
+    new_second_list.remove(first_vertex)
+    new_graph[second_vertex] = new_second_list
+
+    return new_graph
+
+
+def vertex_cover_4(graph: dict) -> tuple:
     vertex_cover = set()
     finished, origin, destiny = _get_random_edge(graph)
     while finished:

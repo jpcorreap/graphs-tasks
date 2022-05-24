@@ -24,7 +24,7 @@ def _get_greatest_degree_vertex(graph):
     return max_degree_vertex
 
 
-def vertex_cover_aa2(graph):
+def vertex_cover_2(graph):
     """
         Escoger el vertice de mayor grado, descartar los ejes que llegan al vertice
         escogido y repetir hasta que no queden ejes.

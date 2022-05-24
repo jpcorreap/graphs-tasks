@@ -1,7 +1,3 @@
-
-from graph_utils import remove_all_edges
-
-
 def _transform_graph(graph):
     """
         Transforma un grafo que es un map de sets
@@ -43,7 +39,7 @@ def _get_arbitrary_edge(graph):
     return False
 
 
-def vertex_cover_aa3(original_graph: dict) -> tuple:
+def vertex_cover_3(original_graph: dict) -> tuple:
     vertex_cover = set()
     graph = _transform_graph(original_graph)
 
