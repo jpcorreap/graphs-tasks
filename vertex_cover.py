@@ -54,6 +54,6 @@ if __name__ == "__main__":
 
     respuesta, tiempo_ejecucion = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
 
-    print("» Respuesta: ", respuesta)
+    # print("» Respuesta: ", respuesta)
     print("» Cantidad de vértices en la respuesta: ", len(respuesta))
     print("» Tiempo de ejecución: {} s".format(tiempo_ejecucion))
