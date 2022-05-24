@@ -19,6 +19,7 @@ def read_graph(path):
         v_links.add(u)
         graph[v] = v_links
     
+    print(graph)
     return graph
 
 
@@ -47,3 +48,6 @@ def remove_edge(graph, first_vertex, second_vertex):
     new_graph[second_vertex] = new_second_list
 
     return new_graph
+
+
+read_graph("ensayo.txt")
