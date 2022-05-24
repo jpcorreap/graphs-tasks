@@ -8,7 +8,6 @@ from vertex_cover_3 import vertex_cover_aa3
 from vertex_cover_4 import vertex_cover_ra4
 
 
-
 ALGORITMOS = [
     vertex_cover_aa1,
     vertex_cover_aa2,

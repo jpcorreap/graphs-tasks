@@ -41,7 +41,7 @@ def _transform_graph(graph):
 def _get_arbitrary_edge(graph):
     """
         Selecciona arbitrariamente un eje, que corresponde al
-        menor vertice que aun tenga conexiones a otros vertices.
+        vertice de menor numero que aun tiene conexiones a otros vertices.
         Si no quedan ejes para escoger, retorna False
     """
     u = 0
