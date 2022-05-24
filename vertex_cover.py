@@ -1,6 +1,5 @@
 
 import sys
-import time
 from vertex_cover_1 import vertex_cover_1
 from vertex_cover_2 import vertex_cover_2
 from vertex_cover_3 import vertex_cover_3
