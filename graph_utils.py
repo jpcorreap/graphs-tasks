@@ -21,15 +21,16 @@ def read_graph(path):
     
     return graph
 
+
 # Elimina todos los ejes de un vertice dado
 def remove_all_edges(graph, vertex):
     new_graph = graph.copy()
-    new_graph[vertex] = []
+    new_graph[vertex] = set()
+
     for u in graph.keys():
         if u != vertex:
-            new_list = new_graph[u]
-            new_list.remove(vertex)
-            new_graph[u] = new_list
+            new_graph[u].remove(vertex)
+                
     return new_graph
 
 
