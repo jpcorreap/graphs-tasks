@@ -19,7 +19,6 @@ def read_graph(path):
         v_links.add(u)
         graph[v] = v_links
     
-    print(graph)
     return graph
 
 
