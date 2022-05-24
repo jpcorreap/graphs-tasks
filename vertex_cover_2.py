@@ -1,5 +1,8 @@
 # Elimina todos los ejes de un vertice dado
 # in situ
+import time
+
+
 def _remove_all_edges(graph, vertex):
     graph[vertex] = set()
     for u in graph:
@@ -29,7 +32,7 @@ def vertex_cover_2(graph):
         Escoger el vertice de mayor grado, descartar los ejes que llegan al vertice
         escogido y repetir hasta que no queden ejes.
     """
-    print("Entró a vertex_cover_aa2")
+    tiempo_inicio = time.time()
     answer = set()
 
     # 1. Escoger el vertice de mayor grado
@@ -42,5 +45,5 @@ def vertex_cover_2(graph):
         # 3. Repetir hasta que no queden ejes
         greatest_degree_vertex = _get_greatest_degree_vertex(graph)
 
-    print("Respuesta:", answer, len(answer))
-    return answer
+    tiempo_fin = time.time()
+    return answer, tiempo_fin - tiempo_inicio

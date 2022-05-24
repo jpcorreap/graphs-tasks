@@ -21,7 +21,7 @@ Una vez validado que cumple lo anterior, ejecute:
     python vertex_cover.py "<archivo de entrada>" <numero del algoritmo>
 
 Un ejemplo de la ejecución anterior es:
-    python vertex_cover.py "ensayo.txt" 2
+    python vertex_cover.py "test_files/ensayo.txt" 2
 
 Posteriormente, verá en la consola el conjunto de vértices a elegir, y el
 tiempo que tomó al algoritmo hayar esa solución.

@@ -54,8 +54,8 @@ if __name__ == "__main__":
     # Numero que indica el algoritmo a ejecutar
     algoritmo_a_ejecutar = int(sys.argv[2])
     graph = _read_graph(input_file_path)
-    tiempo_inicio = time.time()
-    respuesta = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
-    tiempo_fin = time.time()
-    print(respuesta)
-    print(tiempo_fin - tiempo_inicio)
+
+    respuesta, tiempo_ejecucion = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
+
+    print("» Respuesta: ", respuesta)
+    print("» Tiempo de ejecución: {} s".format(tiempo_ejecucion))

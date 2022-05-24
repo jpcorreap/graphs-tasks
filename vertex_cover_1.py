@@ -1,5 +1,8 @@
 # Elimina todos los ejes de un vertice dado
 # in situ
+import time
+
+
 def _remove_all_edges(graph, vertex):
     graph[vertex] = []
     for u in range(len(graph)):
@@ -47,12 +50,12 @@ def vertex_cover_1(original_graph):
     """
     answer = set()
     graph = _transform_graph(original_graph)
-    print(graph)
+    tiempo_inicio = time.time()
+    
     # 1. Escoger arbitrariamente un eje
     arbitrary_edge = _get_arbitrary_edge(graph)
 
     while arbitrary_edge:
-        print("arbitrary_edge", arbitrary_edge)
         u, v = arbitrary_edge
         # 2. Incluir los dos vertices conectados
         answer.add(u)
@@ -63,5 +66,5 @@ def vertex_cover_1(original_graph):
         # Repetir hasta que no queden ejes
         arbitrary_edge = _get_arbitrary_edge(graph)
 
-    print("Respuesta:", answer, len(answer))
-    return answer
+    tiempo_fin = time.time()
+    return answer, tiempo_fin - tiempo_inicio

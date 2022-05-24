@@ -1,4 +1,5 @@
 from random import choice, sample
+import time
 
 
 # Elimina todos los ejes de un vertice dado
@@ -29,17 +30,6 @@ def remove_edge(graph, first_vertex, second_vertex):
     return new_graph
 
 
-def vertex_cover_4(graph: dict) -> tuple:
-    vertex_cover = set()
-    finished, origin, destiny = _get_random_edge(graph)
-    while finished:
-        picked_vertex = choice([origin, destiny])
-        graph = remove_all_edges(graph, picked_vertex)
-        vertex_cover.add(picked_vertex)
-        finished, origin, destiny = _get_random_edge(graph)
-    return vertex_cover, len(vertex_cover)
-
-
 def _get_random_edge(graph: dict) -> tuple:
     """
         Selecciona aleatoriamente un eje
@@ -56,3 +46,18 @@ def _get_random_edge(graph: dict) -> tuple:
             random_destiny_vertex = sample(graph[random_origin_vertex], 1)[0]
             found = True
     return found, random_origin_vertex, random_destiny_vertex
+
+
+def vertex_cover_4(graph: dict) -> tuple:
+    tiempo_inicio = time.time()
+    vertex_cover = set()
+    finished, origin, destiny = _get_random_edge(graph)
+    while finished:
+        picked_vertex = choice([origin, destiny])
+        graph = remove_all_edges(graph, picked_vertex)
+        vertex_cover.add(picked_vertex)
+        finished, origin, destiny = _get_random_edge(graph)
+
+    tiempo_fin = time.time()
+    return vertex_cover, tiempo_fin - tiempo_inicio
+

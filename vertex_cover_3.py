@@ -1,3 +1,6 @@
+import time
+
+
 def _transform_graph(graph):
     """
         Transforma un grafo que es un map de sets
@@ -43,17 +46,16 @@ def vertex_cover_3(original_graph: dict) -> tuple:
     vertex_cover = set()
     graph = _transform_graph(original_graph)
 
+    tiempo_inicio = time.time()
     # 1. Escoger arbitrariamente un eje
     arbitrary_edge = _get_arbitrary_edge(graph)
 
     while arbitrary_edge:
-        print("arbitrary_edge", arbitrary_edge)
         u, v = arbitrary_edge
         max_vertex = u if len(graph[u]) > len(graph[v]) else v
-        print("max_vertex", max_vertex)
         _remove_all_edges(graph, max_vertex)
         vertex_cover.add(max_vertex)
         arbitrary_edge = _get_arbitrary_edge(graph)
     
-    print(vertex_cover, len(vertex_cover))
-    return vertex_cover, len(vertex_cover)
+    tiempo_fin = time.time()
+    return vertex_cover, tiempo_fin - tiempo_inicio
