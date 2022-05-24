@@ -3,14 +3,17 @@ import sys
 import time
 from graph_utils import read_graph
 from vertex_cover_1 import vertex_cover_aa1
-from vertex_cover_4 import vertex_cover_aa4
+from vertex_cover_2 import vertex_cover_aa2
+from vertex_cover_3 import vertex_cover_aa3
+from vertex_cover_4 import vertex_cover_ra4
+
 
 
 ALGORITMOS = [
     vertex_cover_aa1,
-    vertex_cover_aa1,
-    vertex_cover_aa1,
-    vertex_cover_aa4
+    vertex_cover_aa2,
+    vertex_cover_aa3,
+    vertex_cover_ra4
 ]
 
 
@@ -28,14 +31,9 @@ if __name__ == "__main__":
     input_file_path = sys.argv[1]
     # Numero que indica el algoritmo a ejecutar
     algoritmo_a_ejecutar = int(sys.argv[2])
-
-    respuesta = []
-
     graph = read_graph(input_file_path)
-
     tiempo_inicio = time.time()
     respuesta = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
     tiempo_fin = time.time()
-
     print(respuesta)
     print(tiempo_fin - tiempo_inicio)
