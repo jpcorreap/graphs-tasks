@@ -19,23 +19,20 @@ ALGORITMOS = [
 # y retorna un grafo que lo representa. Este grafo es un
 # map de sets, algo del estilo {0:{1,2}, 1:{0}, 2:{0}}
 def _read_graph(path):
-    graph = {}
     file = open(path, "r")
     lines = file.readlines()
+    # Get number of vertices from first line
+    number_of_vertices = int(lines.pop(0))
     
+    graph = {x: set() for x in range(0, number_of_vertices)}
+
     for line in lines:
         parsed = line.replace("\n", "").split("\t")
         u = int(parsed[0])
         v = int(parsed[1])
+        graph[u].add(v)
+        graph[v].add(u)
 
-        u_links = graph.get(u, set())
-        u_links.add(v)
-        graph[u] = u_links
-
-        v_links = graph.get(v, set())
-        v_links.add(u)
-        graph[v] = v_links
-    
     return graph
 
 
@@ -58,4 +55,5 @@ if __name__ == "__main__":
     respuesta, tiempo_ejecucion = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
 
     print("» Respuesta: ", respuesta)
+    print("» Cantidad de vértices en la respuesta: ", len(respuesta))
     print("» Tiempo de ejecución: {} s".format(tiempo_ejecucion))

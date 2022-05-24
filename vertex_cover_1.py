@@ -56,6 +56,7 @@ def vertex_cover_1(original_graph):
     arbitrary_edge = _get_arbitrary_edge(graph)
 
     while arbitrary_edge:
+        print("arbitrary_edge", arbitrary_edge)
         u, v = arbitrary_edge
         # 2. Incluir los dos vertices conectados
         answer.add(u)
