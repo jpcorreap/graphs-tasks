@@ -37,5 +37,5 @@ if __name__ == "__main__":
     respuesta = ALGORITMOS[algoritmo_a_ejecutar - 1](graph)
     tiempo_fin = time.time()
 
-    print(respuesta)
+    # print(respuesta)
     print(tiempo_fin - tiempo_inicio)

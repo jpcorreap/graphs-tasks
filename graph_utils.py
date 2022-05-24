@@ -47,6 +47,3 @@ def remove_edge(graph, first_vertex, second_vertex):
     new_graph[second_vertex] = new_second_list
 
     return new_graph
-
-
-read_graph("ensayo.txt")

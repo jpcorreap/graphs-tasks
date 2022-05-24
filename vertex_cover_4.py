@@ -43,6 +43,3 @@ def vertex_cover_aa4(graph):
         graph = remove_all_edges(graph, vertice)
 
     return rta
-
-
-print('Min vertex cover:', vertex_cover_aa4(graph))
