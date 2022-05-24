@@ -3,12 +3,13 @@ import sys
 import time
 from graph_utils import read_graph
 from vertex_cover_1 import vertex_cover_aa1
+from vertex_cover_2 import vertex_cover_aa2
 from vertex_cover_4 import vertex_cover_aa4
 
 
 ALGORITMOS = [
     vertex_cover_aa1,
-    vertex_cover_aa1,
+    vertex_cover_aa2,
     vertex_cover_aa1,
     vertex_cover_aa4
 ]
